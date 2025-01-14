@@ -1,0 +1,55 @@
+<%- include('partials/header.ejs') %> 
+
+<!-- Set of dropdowns for filtering recipes. -->
+<div class="container">
+    <h1 class="display-1 text-center mb-3">Filter your search</h1>
+
+    <div class="d-flex flex-row justify-content-center column-gap-3">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Cousine
+            </button>
+            <ul class="dropdown-menu">
+                <li><h6 class="dropdown-header">Choose a Cousine:</h6></li>
+                <li><hr class="dropdown-divider"></li>
+                <% cousines.forEach(cousine => {%>
+                    <li><button class="dropdown-item" type="button"><%= cousine %> </button></li>
+                <% }); %>         
+            </ul>
+        </div>
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Protein
+            </button>
+            <ul class="dropdown-menu">
+                <li><h6 class="dropdown-header">Choose a Protein:</h6></li>
+                <li><hr class="dropdown-divider"></li>
+                <% proteins.forEach(protein => {%>
+                    <li><button class="dropdown-item" type="button"><%= protein %> </button></li>
+                <% }); %>  
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+
+<script>
+    //Change the dropdown text to whatever is selectec within the corresponding dropdown list.
+    const dropDownButtons = document.querySelectorAll('.dropdown-toggle');
+    dropDownButtons.forEach(dropDownButton => {
+        console.log(dropDownButton);
+        const buttons = dropDownButton.nextElementSibling.querySelectorAll('button');
+        buttons.forEach(button => {
+            button.addEventListener('click', event => {
+                dropDownButton.textContent = event.target.textContent;
+            }); 
+        });
+            
+    });
+
+</script>
+          
+
+        
+<%- include('partials/footer.ejs') %> 
