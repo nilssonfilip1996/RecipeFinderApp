@@ -1,35 +1,57 @@
 <%- include('partials/header.ejs') %> 
 
 <!-- Set of dropdowns for filtering recipes. -->
-<div class="container">
-    <h1 class="display-1 text-center mb-3">Filter your search</h1>
+<div class="custom-center">
+    <h1 class="text-center mt-5">Filter your search</h1>
 
-    <div class="d-flex flex-row justify-content-center column-gap-3">
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Cousine
-            </button>
-            <ul class="dropdown-menu">
-                <li><h6 class="dropdown-header">Choose a Cousine:</h6></li>
-                <li><hr class="dropdown-divider"></li>
+    <form method="POST" action="/complexSearch">
+        <div class="d-flex justify-content-center column-gap-3">
+            <select name="selectedCousine" class="form-select" required>
+                <option value="" disabled selected>Cousine:</option>
                 <% cousines.forEach(cousine => {%>
-                    <li><button class="dropdown-item" type="button"><%= cousine %> </button></li>
-                <% }); %>         
-            </ul>
-        </div>
-        <div class="dropdown">
-            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Protein
-            </button>
-            <ul class="dropdown-menu">
-                <li><h6 class="dropdown-header">Choose a Protein:</h6></li>
-                <li><hr class="dropdown-divider"></li>
+                    <option value=<%=cousine%>><%=cousine%></option>
+                <% }); %>
+            </select>
+
+            <select name="selectedProtein" class="form-select" required>
+                <option value="" disabled selected>Protein:</option>
                 <% proteins.forEach(protein => {%>
-                    <li><button class="dropdown-item" type="button"><%= protein %> </button></li>
-                <% }); %>  
-            </ul>
+                    <option value=<%=protein%>><%=protein%></option>
+                <% }); %>
+            </select>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
-    </div>
+    </form>
+
+    
+    <% if(locals.searchResults) { %>
+      <section class="top-catagory-area pt-3">
+        <div class="container">
+          <% if(searchResults.length<3) { %>
+            <div class="row">
+          <% } else { %>
+            <div class="row row-cols-3 g-4">
+          <% } %>
+            <% searchResults.forEach(result => { %>
+              <div class="col-12 col-md-6 col-lg-4">
+                <div class="card text-bg-dark">
+                  <img src=<%= result.image %> class="card-img" alt="..." onerror="this.src='https://placehold.co/312x231'">
+                  <div class="card-img-overlay d-flex flex-column justify-content-around align-items-start">
+                    <h5 class="card-title"><%= result.title %> </h5>
+                    <button type="button" class="btn btn-success">See recipe</button>
+                  </div>
+                </div>
+              </div>
+            <% }); %>
+          </div>
+        </div>
+      </section>
+    <% } %>
+
+    
+    
+
 
 </div>
 
