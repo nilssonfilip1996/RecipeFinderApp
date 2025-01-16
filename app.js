@@ -22,15 +22,15 @@ app.get("/", (req, res) => {
 
 app.post("/complexSearch", async (req, res) => {
     console.log(req.body);
-/*     var recipeList = await axios.get(`${API_URL}/recipes/complexSearch?apiKey=${apiKey}&cuisine=${req.body.selectedCousine}&includeIngredients=${req.body.selectedProtein}&number=9`);
+    var recipeList = await axios.get(`${API_URL}/recipes/complexSearch?apiKey=${apiKey}&cuisine=${req.body.selectedCousine}&includeIngredients=${req.body.selectedProtein}&number=9`);
     console.log(recipeList.data.results);
     
-    res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, searchResults: recipeList.data.results}); */
+    res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, searchResults: recipeList.data.results});
 
     //Dummy data to reduce the amount of API-requests during testing.
-    let openJSON = fs.readFileSync('dummyEntries.json', 'utf-8');
+/*     let openJSON = fs.readFileSync('dummyEntries.json', 'utf-8');
     let recipeList = JSON.parse(openJSON);
-    res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, searchResults: recipeList});
+    res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, searchResults: recipeList}); */
 });
 
 app.listen(port, () => {

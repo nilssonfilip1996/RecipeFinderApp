@@ -6,13 +6,13 @@ body{
   font-size: 40px;
 }
 
-.custom-center {
+/* .custom-center {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     flex-grow: 1;
-  }
+  } */
 
   h1, h2, h3, h4, h5 {
     font-family: "DM Serif Display", serif;
@@ -27,6 +27,10 @@ body{
     padding: 5px;
     background-color: rgba(25, 135, 84);
   }
+
+/*   .card-img {
+    width: 100%;
+  } */
 
 /* .selectedItem {
     max-height: 200px;
