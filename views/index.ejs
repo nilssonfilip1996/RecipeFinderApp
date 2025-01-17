@@ -10,7 +10,7 @@
             <select name="selectedCousine" class="form-select" required>
                 <option value="" disabled selected>Cousine:</option>
                 <% cousines.forEach(cousine => {%>
-                    <option value=<%=cousine%>><%=cousine%></option>
+                    <option value=<%=cousine%> <%if(locals.userSearch.cousine == cousine){%> selected <%}%> ><%=cousine%></option> 
                 <% }); %>
             </select>
           </div>
@@ -18,7 +18,7 @@
             <select name="selectedProtein" class="form-select" required>
                 <option value="" disabled selected>Protein:</option>
                 <% proteins.forEach(protein => {%>
-                    <option value=<%=protein%>><%=protein%></option>
+                    <option value=<%=protein%> <%if(locals.userSearch.protein == protein){%> selected <%}%> ><%=protein%></option>
                 <% }); %>
             </select>
           </div>
@@ -28,18 +28,21 @@
         </div>
     </form>
 
-    
-    <% if(locals.searchResults) { %>
+    <% if(locals.userSearch.searchResults.length>0) { %>
+      <!-- Search Results. -->
       <section class="pt-3">
         <div class="container">
           <div class="row row-cols-3 justify-content-center g-4">
-            <% searchResults.forEach(result => { %>
+            <% userSearch.searchResults.forEach(result => { %>
               <div class="col-12 col-md-6 col-lg-4">
                 <div class="card text-bg-dark">
                   <img src=<%= result.image %> class="card-img" alt="..." onerror="this.src='https://placehold.co/312x231'">
                   <div class="card-img-overlay d-flex flex-column justify-content-around align-items-start">
                     <h5 class="card-title"><%= result.title %> </h5>
-                    <button type="button" class="btn btn-success">See recipe</button>
+                    <form method="post">
+                      <button type="submit" class="btn btn-success" formaction="/viewRecipe/<%=result.id%>">See recipe</button>
+                    </form>
+                    
                   </div>
                 </div>
               </div>
@@ -49,16 +52,13 @@
       </section>
     <% } %>
 
-    
-    
-
 
 </div>
 
 
 <script>
     //Change the dropdown text to whatever is selectec within the corresponding dropdown list.
-    const dropDownButtons = document.querySelectorAll('.dropdown-toggle');
+/*     const dropDownButtons = document.querySelectorAll('.dropdown-toggle');
     dropDownButtons.forEach(dropDownButton => {
         console.log(dropDownButton);
         const buttons = dropDownButton.nextElementSibling.querySelectorAll('button');
@@ -66,9 +66,8 @@
             button.addEventListener('click', event => {
                 dropDownButton.textContent = event.target.textContent;
             }); 
-        });
-            
-    });
+        });    
+    }); */
 
 </script>
           

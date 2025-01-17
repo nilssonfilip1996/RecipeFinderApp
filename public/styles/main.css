@@ -27,12 +27,13 @@ body{
     padding: 5px;
     background-color: rgba(25, 135, 84);
   }
+  
+  .card:hover{
+    transform: scale(1.05);
+    box-shadow: 8px 8px 8px green;
+  }
+  .card{
+    transition: .3s;
+  }
 
-/*   .card-img {
-    width: 100%;
-  } */
 
-/* .selectedItem {
-    max-height: 200px;
-    overflow-y: auto;
-  } */
