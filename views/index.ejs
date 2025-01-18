@@ -1,9 +1,51 @@
 <%- include('partials/header.ejs') %> 
 
-<!-- Set of dropdowns for filtering recipes. -->
-<div class="container">
-    <h1 class="text-center mt-5">Filter your search</h1>
 
+<div class="container">
+    <% if(locals.recipe) { %>
+      <!-- Recipe section -->
+      <section class="mt-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-6 card">
+              <div class="d-flex flex-column">
+                <div>
+                  <h2 class="mt-2"><%= recipe.title %></h2>
+                </div>
+                <div class="align-self-center">
+                  <img class="card-img img-recipe" src=<%= recipe.image %> class="" alt="..." onerror="this.src='https://placehold.co/312x231'">
+                  
+                </div>
+                <div class="container mt-4">
+                  <div class="row">
+                    <h3 class="mb-1">Ingredients:</h3>
+                    <h5 class="mb-3">Servings: <%= recipe.servings %></h5>
+                    <% recipe.extendedIngredients.forEach(ingredient => { %>
+                      <!-- <div class="col-3"><img class="img-ingredient" src="https://img.spoonacular.com/ingredients_100x100/<%=ingredient.image%>" alt="" onerror="this.src='https://placehold.co/70x70'"></div> -->
+                      <div class=""><%= Math.floor(ingredient.measures.metric.amount)  %> <%= ingredient.measures.metric.unitShort %> <%= ingredient.name %> </div>
+                      <hr class="hr" />
+                    <% }); %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mt-4 mt-md-0">
+              <h3 class="">Instructions:</h3>
+              <ol>
+                <% recipe.analyzedInstructions[0].steps.forEach(step => { %>
+                  <li class="mb-4"><%= step.step %></li>
+                <% }); %>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <hr class="hr my-5" />
+      </section>
+    <% } %>
+
+
+    <h1 class="text-center">Filter your search</h1>
+    <!-- Set of dropdowns for filtering recipes. -->
     <form method="POST" action="/complexSearch">
         <div class="d-flex justify-content-center column-gap-3">
           <div class="">
@@ -35,14 +77,13 @@
           <div class="row row-cols-3 justify-content-center g-4">
             <% userSearch.searchResults.forEach(result => { %>
               <div class="col-12 col-md-6 col-lg-4">
-                <div class="card text-bg-dark">
+                <div class="search-result-card card text-bg-dark">
                   <img src=<%= result.image %> class="card-img" alt="..." onerror="this.src='https://placehold.co/312x231'">
                   <div class="card-img-overlay d-flex flex-column justify-content-around align-items-start">
                     <h5 class="card-title"><%= result.title %> </h5>
                     <form method="post">
                       <button type="submit" class="btn btn-success" formaction="/viewRecipe/<%=result.id%>">See recipe</button>
                     </form>
-                    
                   </div>
                 </div>
               </div>
@@ -51,8 +92,6 @@
         </div>
       </section>
     <% } %>
-
-
 </div>
 
 
@@ -70,7 +109,5 @@
     }); */
 
 </script>
-          
-
         
 <%- include('partials/footer.ejs') %> 

@@ -28,12 +28,20 @@ body{
     background-color: rgba(25, 135, 84);
   }
   
-  .card:hover{
+  .search-result-card:hover{
     transform: scale(1.05);
     box-shadow: 8px 8px 8px green;
   }
-  .card{
+  .search-result-card{
     transition: .3s;
   }
 
+  .img-recipe{
+    border-radius: 5px;
+  }
+
+  .img-ingredient{
+    width: 70px;
+    height: 70px;
+  }
 

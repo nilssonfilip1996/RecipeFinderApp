@@ -1,57 +1,56 @@
 [
-    {
-      "id": "642695",
-      "title": "Feta Stuffed Burgers",
-      "image": "https://img.spoonacular.com/recipes/642695-312x231.jpg",
-      "imageType": "jpg"
-    },
-    {
-      "id": "775621",
-      "title": "Gorgonzola & Grilled Peach Burger",
-      "image": "https://img.spoonacular.com/recipes/775621-312x231.jpg",
-      "imageType": "jpg"
-    },
-    {
-      "id": "673457",
-      "title": "Slow Cooker Chili",
-      "image": "https://img.spoonacular.com/recipes/673457-312x231.jpg",
-      "imageType": "jpg"
-    },
-    {
-      "id": "662376",
-      "title": "Superbowl Chili",
-      "image": "https://img.spoonacular.com/recipes/662376-312x231.jpg",
-      "imageType": "jpg"
-    },
-    {
-      "id": "1697611",
-      "title": "Chili con Carne that'll make your taste buds go silly",
-      "image": "https://img.spoonacular.com/recipes/1697611-312x231.jpg",
-      "imageType": "jpg"
-    },
-    {
-      "id": "641845",
-      "title": "Easy Beef and Bean Chili",
-      "image": "https://img.spoonacular.com/recipes/641845-312x231.jpg",
-      "imageType": "jpg"
-    },
-    {
-      "id": "638549",
-      "title": "Chili and Garlic Spiced Beef and Broccoli Stir Fry",
-      "image": "https://img.spoonacular.com/recipes/638549-312x231.jpg",
-      "imageType": "jpg"
-    },
-    {
-      "id": "660273",
-      "title": "Slow Cooked Beef Chili",
-      "image": "https://img.spoonacular.com/recipes/660273-312x231.jpg",
-      "imageType": "jpg"
-    },
-    {
-      "id": "610281",
-      "title": "Ancho Chipotle Chili",
-      "image": "https://img.spoonacular.com/recipes/610281-312x231.jpg",
-      "imageType": "jpg"
-    }
-  ]
-  
+  {
+    "id": "642695",
+    "title": "Feta Stuffed Burgers",
+    "image": "https://img.spoonacular.com/recipes/642695-312x231.jpg",
+    "imageType": "jpg"
+  },
+  {
+    "id": "662376",
+    "title": "Superbowl Chili",
+    "image": "https://img.spoonacular.com/recipes/662376-312x231.jpg",
+    "imageType": "jpg"
+  },
+  {
+    "id": "1697611",
+    "title": "Chili con Carne that'll make your taste buds go silly",
+    "image": "https://img.spoonacular.com/recipes/1697611-312x231.jpg",
+    "imageType": "jpg"
+  },
+  {
+    "id": "641845",
+    "title": "Easy Beef and Bean Chili",
+    "image": "https://img.spoonacular.com/recipes/641845-312x231.jpg",
+    "imageType": "jpg"
+  },
+  {
+    "id": "638549",
+    "title": "Chili and Garlic Spiced Beef and Broccoli Stir Fry",
+    "image": "https://img.spoonacular.com/recipes/638549-312x231.jpg",
+    "imageType": "jpg"
+  },
+  {
+    "id": "660273",
+    "title": "Slow Cooked Beef Chili",
+    "image": "https://img.spoonacular.com/recipes/660273-312x231.jpg",
+    "imageType": "jpg"
+  },
+  {
+    "id": "610281",
+    "title": "Ancho Chipotle Chili",
+    "image": "https://img.spoonacular.com/recipes/610281-312x231.jpg",
+    "imageType": "jpg"
+  },
+  {
+    "id": "662391",
+    "title": "Suzanne’s Red Chili",
+    "image": "https://img.spoonacular.com/recipes/662391-312x231.jpg",
+    "imageType": "jpg"
+  },
+  {
+    "id": "650377",
+    "title": "Low Carb Brunch Burger",
+    "image": "https://img.spoonacular.com/recipes/650377-312x231.jpg",
+    "imageType": "jpg"
+  }
+]

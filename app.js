@@ -34,26 +34,27 @@ app.get("/", (req, res) => {
 
 app.post("/complexSearch", async (req, res) => {
     console.log(req.body);
-    var recipeList = await axios.get(`${API_URL}/recipes/complexSearch?apiKey=${apiKey}&cuisine=${req.body.selectedCousine}&includeIngredients=${req.body.selectedProtein}&number=9`);
-    //console.log(recipeList.data.results);
+    var recipeList = await axios.get(`${API_URL}/recipes/complexSearch?apiKey=${apiKey}&cuisine=${req.body.selectedCousine}&includeIngredients=${req.body.selectedProtein}&number=9&instructionsRequired=true`);
+    console.log(recipeList.data);
     userSearch.cousine = req.body.selectedCousine;
     userSearch.protein = req.body.selectedProtein;
     userSearch.searchResults = recipeList.data.results;
-    console.log(userSearch);
-    
+    //console.log(userSearch);
     res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch});
 
     //Dummy data to reduce the amount of API-requests during testing.
 /*     let openJSON = fs.readFileSync('dummyEntries.json', 'utf-8');
     let recipeList = JSON.parse(openJSON);
-    res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, searchResults: recipeList}); */
+    userSearch.cousine = req.body.selectedCousine;
+    userSearch.protein = req.body.selectedProtein;
+    userSearch.searchResults = recipeList;
+    res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch}); */
 });
 
-app.post("/viewRecipe/:id", (req, res) => {
+app.post("/viewRecipe/:id", async (req, res) => {
     console.log(req.params.id);
-    let openJSON = fs.readFileSync('dummyEntries.json', 'utf-8');
-    let recipeList = JSON.parse(openJSON);
-    res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch});
+    var recipe = await axios.get(`${API_URL}/recipes/${req.params.id}/information?apiKey=${apiKey}`);
+    res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, recipe: recipe.data});
 });
 
 app.listen(port, () => {
