@@ -1,7 +1,7 @@
 <%- include('partials/header.ejs') %> 
 
 
-<div class="container">
+<div class="container my-auto">
     <% if(Object.keys(locals.userSearch.chosenRecipe).length>0) { %>
       <!-- Recipe section -->
       <section class="mt-4">
@@ -68,32 +68,34 @@
       </section>
     <% } %>
 
-
-    <h1 class="text-center">Filter your search</h1>
-    <!-- Set of dropdowns for filtering recipes. -->
-    <form method="POST" action="/complexSearch">
-        <div class="d-flex justify-content-center column-gap-3">
-          <div class="">
-            <select name="selectedCousine" class="form-select" required>
-                <option value="" disabled selected>Cousine:</option>
-                <% cousines.forEach(cousine => {%>
-                    <option value=<%=cousine%> <%if(locals.userSearch.cousine == cousine){%> selected <%}%> ><%=cousine%></option> 
-                <% }); %>
-            </select>
+    <!-- Search -->
+    <section>
+      <h1 class="text-center">What are you craving?</h1>
+      <!-- Set of dropdowns for filtering recipes. -->
+      <form method="POST" action="/complexSearch">
+          <div class="d-flex justify-content-center column-gap-3">
+            <div class="">
+              <select name="selectedCousine" class="form-select" required>
+                  <option value="" disabled selected>Cousine:</option>
+                  <% cousines.forEach(cousine => {%>
+                      <option value=<%=cousine%> <%if(locals.userSearch.cousine == cousine){%> selected <%}%> ><%=cousine%></option> 
+                  <% }); %>
+              </select>
+            </div>
+            <div class="">
+              <select name="selectedProtein" class="form-select" required>
+                  <option value="" disabled selected>Protein:</option>
+                  <% proteins.forEach(protein => {%>
+                      <option value=<%=protein%> <%if(locals.userSearch.protein == protein){%> selected <%}%> ><%=protein%></option>
+                  <% }); %>
+              </select>
+            </div>
+            <div class="">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
           </div>
-          <div class="">
-            <select name="selectedProtein" class="form-select" required>
-                <option value="" disabled selected>Protein:</option>
-                <% proteins.forEach(protein => {%>
-                    <option value=<%=protein%> <%if(locals.userSearch.protein == protein){%> selected <%}%> ><%=protein%></option>
-                <% }); %>
-            </select>
-          </div>
-          <div class="">
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </div>
-        </div>
-    </form>
+      </form>
+    </section>
 
     <% if(locals.userSearch.searchResults.length>0) { %>
       <!-- Search Results. -->
