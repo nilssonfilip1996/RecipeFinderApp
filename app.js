@@ -42,7 +42,12 @@ app.post("/complexSearch", async (req, res) => {
     userSearch.protein = req.body.selectedProtein;
     userSearch.searchResults = recipeList.data.results;
     //console.log(userSearch);
-    res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch});
+    if(userSearch.searchResults<1){
+        res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, error: "No recipes found."});
+    }
+    else{
+        res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch});
+    }
 
     //Dummy data to reduce the amount of API-requests during testing.
 /*     let openJSON = fs.readFileSync('dummyEntries.json', 'utf-8');
