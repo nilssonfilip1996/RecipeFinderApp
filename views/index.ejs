@@ -10,11 +10,10 @@
             <div class="col-md-6 card bg-body-tertiary">
               <div class="d-flex flex-column">
                 <div>
-                  <h2 class="mt-2"><%= userSearch.chosenRecipe.title %></h2>
+                  <h2 class="my-4"><%= userSearch.chosenRecipe.title %></h2>
                 </div>
                 <div class="align-self-center">
-                  <img class="card-img img-recipe" src=<%= userSearch.chosenRecipe.image %> class="" alt="..." onerror="this.src='https://placehold.co/312x231'">
-                  
+                  <img class="card-img img-recipe" src=<%= userSearch.chosenRecipe.image %> alt="..." onerror="this.src='https://placehold.co/312x231'">
                 </div>
                 <div class="container mt-4">
                   <div class="row">
@@ -33,9 +32,8 @@
                         <img class="" src="/images/rating-svgrepo-com.svg" width="30px" alt="">
                         <div class="d-flex flex-row">
                           <h5 class="my-auto">Score: <%= Math.floor(userSearch.chosenRecipe.spoonacularScore) %></h5>
-                          <img class="" src="/images/question-circle-svgrepo-com.svg" width="20px" alt="" data-bs-toggle="tooltip" data-bs-html="true" title="<p>The <b>spoonacular score compares the recipe with all the other recipes on Spoonacular.com</b>. Score 100 and the author has achieved total recipe domination. Score 0% and someone has probably managed to upload one of the worst recipes on the website.</p><p>Spoonacular's <b>top-secret formula</b> takes into consideration price (the cheaper the better!), difficulty (the easier the better!), popularity (# of Facebook likes, Pinterest pins, spoonacular saves...), and the health score.</p>">
+                          <img class="" src="/images/question-circle-svgrepo-com.svg" width="20px" alt="" data-bs-toggle="tooltip" data-bs-html="true" title="<p>The <b>spoonacular score is determined by comparing the recipe with all the other recipes on Spoonacular.com</b>. A score of 100 means the author has achieved total recipe domination. Score 0 and someone has probably managed to upload one of the worst recipes on the website.</p><p>Spoonacular's <b>top-secret formula</b> takes into consideration price (the cheaper the better!), difficulty (the easier the better!), popularity (# of Facebook likes, Pinterest pins, spoonacular saves...), and the health score.</p>">
                         </div>
-
                       </div>
                     </div>
                   </div>
@@ -44,7 +42,6 @@
                   </div>
                   <% userSearch.chosenRecipe.extendedIngredients.forEach(ingredient => { %>
                     <div class="row">
-                      <!-- <div class="col-3"><img class="img-ingredient" src="https://img.spoonacular.com/ingredients_100x100/<%=ingredient.image%>" alt="" onerror="this.src='https://placehold.co/70x70'"></div> -->
                       <div class=""><%= Math.floor(ingredient.measures.metric.amount)  %> <%= ingredient.measures.metric.unitShort %> <b><%= ingredient.name %></b></div>
                     </div>
                     <div class="row">
@@ -55,6 +52,9 @@
               </div>
             </div>
             <div class="col-md-6 mt-4 mt-md-0">
+              <h3 class="">Summary:</h3>
+              <p><%- userSearch.chosenRecipe.summary %> </p>
+              <hr class="hr" />
               <h3 class="">Instructions:</h3>
               <ol>
                 <% userSearch.chosenRecipe.analyzedInstructions[0].steps.forEach(step => { %>
@@ -121,17 +121,6 @@
 
 
 <script>
-    //Change the dropdown text to whatever is selectec within the corresponding dropdown list.
-/*     const dropDownButtons = document.querySelectorAll('.dropdown-toggle');
-    dropDownButtons.forEach(dropDownButton => {
-        console.log(dropDownButton);
-        const buttons = dropDownButton.nextElementSibling.querySelectorAll('button');
-        buttons.forEach(button => {
-            button.addEventListener('click', event => {
-                dropDownButton.textContent = event.target.textContent;
-            }); 
-        });    
-    }); */
     document.addEventListener("DOMContentLoaded", function (event) {
       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
       const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))

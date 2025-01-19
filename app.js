@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 const port = 3000;
 const API_URL = "https://api.spoonacular.com";
-const apiKey = process.env.API_KEY;
+const API_KEY = process.env.API_KEY;
 
 let userSearch = {
     "cousine":"",
@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 
 app.post("/complexSearch", async (req, res) => {
     console.log(req.body);
-    var recipeList = await axios.get(`${API_URL}/recipes/complexSearch?apiKey=${apiKey}&cuisine=${req.body.selectedCousine}&includeIngredients=${req.body.selectedProtein}&number=9&instructionsRequired=true`);
+    var recipeList = await axios.get(`${API_URL}/recipes/complexSearch?apiKey=${API_KEY}&cuisine=${req.body.selectedCousine}&includeIngredients=${req.body.selectedProtein}&number=9&instructionsRequired=true`);
     console.log(recipeList.data);
     userSearch.cousine = req.body.selectedCousine;
     userSearch.protein = req.body.selectedProtein;
@@ -55,7 +55,7 @@ app.post("/complexSearch", async (req, res) => {
 
 app.post("/viewRecipe/:id", async (req, res) => {
     console.log(req.params.id);
-    var recipe = await axios.get(`${API_URL}/recipes/${req.params.id}/information?apiKey=${apiKey}`);
+    var recipe = await axios.get(`${API_URL}/recipes/${req.params.id}/information?apiKey=${API_KEY}`);
     userSearch.chosenRecipe = recipe.data;
     res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, recipe: recipe.data});
 
