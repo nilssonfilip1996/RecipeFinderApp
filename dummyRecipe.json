@@ -1,0 +1,583 @@
+{
+  "vegetarian": false,
+  "vegan": false,
+  "glutenFree": true,
+  "dairyFree": false,
+  "veryHealthy": false,
+  "cheap": false,
+  "veryPopular": false,
+  "sustainable": false,
+  "lowFodmap": false,
+  "weightWatcherSmartPoints": 15,
+  "gaps": "no",
+  "preparationMinutes": null,
+  "cookingMinutes": null,
+  "aggregateLikes": 3,
+  "healthScore": 46,
+  "creditsText": "foodista.com",
+  "sourceName": "foodista.com",
+  "pricePerServing": 505.57,
+  "extendedIngredients": [
+    {
+      "id": 16018,
+      "aisle": "Canned and Jarred",
+      "image": "black-beans.jpg",
+      "consistency": "SOLID",
+      "name": "black beans",
+      "nameClean": "canned black beans",
+      "original": "15 ounces cans black beans, drained and rinsed",
+      "originalName": "black beans, drained and rinsed",
+      "amount": 15,
+      "unit": "ounces",
+      "meta": ["drained and rinsed", "canned"],
+      "measures": {
+        "us": { "amount": 15, "unitShort": "oz", "unitLong": "ounces" },
+        "metric": { "amount": 425.243, "unitShort": "g", "unitLong": "grams" }
+      }
+    },
+    {
+      "id": 10011693,
+      "aisle": "Canned and Jarred",
+      "image": "tomatoes-canned.png",
+      "consistency": "SOLID",
+      "name": "canned tomatoes",
+      "nameClean": "canned tomatoes",
+      "original": "28 ounces can diced tomatoes, drained",
+      "originalName": "diced tomatoes, drained",
+      "amount": 28,
+      "unit": "ounces",
+      "meta": ["diced", "drained", "canned"],
+      "measures": {
+        "us": { "amount": 28, "unitShort": "oz", "unitLong": "ounces" },
+        "metric": { "amount": 793.787, "unitShort": "g", "unitLong": "grams" }
+      }
+    },
+    {
+      "id": 11124,
+      "aisle": "Produce",
+      "image": "sliced-carrot.png",
+      "consistency": "SOLID",
+      "name": "carrots",
+      "nameClean": "carrot",
+      "original": "2 mediums carrots",
+      "originalName": "s carrots",
+      "amount": 2,
+      "unit": "medium",
+      "meta": [],
+      "measures": {
+        "us": { "amount": 2, "unitShort": "medium", "unitLong": "mediums" },
+        "metric": { "amount": 2, "unitShort": "medium", "unitLong": "mediums" }
+      }
+    },
+    {
+      "id": 2009,
+      "aisle": "Spices and Seasonings",
+      "image": "chili-powder.jpg",
+      "consistency": "SOLID",
+      "name": "plus 1 chili powder",
+      "nameClean": "chili powder",
+      "original": "2 teaspoons tablespoons plus 1 chili powder",
+      "originalName": "tablespoons plus 1 chili powder",
+      "amount": 2,
+      "unit": "teaspoons",
+      "meta": [],
+      "measures": {
+        "us": { "amount": 2, "unitShort": "tsps", "unitLong": "teaspoons" },
+        "metric": { "amount": 2, "unitShort": "tsps", "unitLong": "teaspoons" }
+      }
+    },
+    {
+      "id": 98839,
+      "aisle": "Canned and Jarred",
+      "image": "chile-chipotle.jpg",
+      "consistency": "SOLID",
+      "name": "chipotle chile pepper in adobo sauce",
+      "nameClean": "chipotle chiles",
+      "original": "2 tablespoons chopped chipotle chile pepper in adobo sauce",
+      "originalName": "chopped chipotle chile pepper in adobo sauce",
+      "amount": 2,
+      "unit": "tablespoons",
+      "meta": ["chopped"],
+      "measures": {
+        "us": { "amount": 2, "unitShort": "Tbsps", "unitLong": "Tbsps" },
+        "metric": { "amount": 2, "unitShort": "Tbsps", "unitLong": "Tbsps" }
+      }
+    },
+    {
+      "id": 1002014,
+      "aisle": "Spices and Seasonings",
+      "image": "ground-cumin.jpg",
+      "consistency": "SOLID",
+      "name": "cumin",
+      "nameClean": "cumin",
+      "original": "4 teaspoons cumin",
+      "originalName": "cumin",
+      "amount": 4,
+      "unit": "teaspoons",
+      "meta": [],
+      "measures": {
+        "us": { "amount": 4, "unitShort": "tsps", "unitLong": "teaspoons" },
+        "metric": { "amount": 4, "unitShort": "tsps", "unitLong": "teaspoons" }
+      }
+    },
+    {
+      "id": 11165,
+      "aisle": "Produce",
+      "image": "cilantro.png",
+      "consistency": "SOLID",
+      "name": "cilantro",
+      "nameClean": "cilantro",
+      "original": "chopped fresh cilantro",
+      "originalName": "chopped fresh cilantro",
+      "amount": 8,
+      "unit": "servings",
+      "meta": ["fresh", "chopped"],
+      "measures": {
+        "us": { "amount": 8, "unitShort": "servings", "unitLong": "servings" },
+        "metric": {
+          "amount": 8,
+          "unitShort": "servings",
+          "unitLong": "servings"
+        }
+      }
+    },
+    {
+      "id": 11215,
+      "aisle": "Produce",
+      "image": "garlic.png",
+      "consistency": "SOLID",
+      "name": "garlic",
+      "nameClean": "garlic",
+      "original": "2 tablespoons finely minced garlic",
+      "originalName": "finely minced garlic",
+      "amount": 2,
+      "unit": "tablespoons",
+      "meta": ["finely minced"],
+      "measures": {
+        "us": { "amount": 2, "unitShort": "Tbsps", "unitLong": "Tbsps" },
+        "metric": { "amount": 2, "unitShort": "Tbsps", "unitLong": "Tbsps" }
+      }
+    },
+    {
+      "id": 11291,
+      "aisle": "Produce",
+      "image": "spring-onions.jpg",
+      "consistency": "SOLID",
+      "name": "green onions",
+      "nameClean": "spring onions",
+      "original": "chopped green onions",
+      "originalName": "chopped green onions",
+      "amount": 8,
+      "unit": "servings",
+      "meta": ["chopped"],
+      "measures": {
+        "us": { "amount": 8, "unitShort": "servings", "unitLong": "servings" },
+        "metric": {
+          "amount": 8,
+          "unitShort": "servings",
+          "unitLong": "servings"
+        }
+      }
+    },
+    {
+      "id": 1082047,
+      "aisle": "Spices and Seasonings",
+      "image": "salt.jpg",
+      "consistency": "SOLID",
+      "name": "kosher salt",
+      "nameClean": "kosher salt",
+      "original": "2 teaspoons kosher salt",
+      "originalName": "kosher salt",
+      "amount": 2,
+      "unit": "teaspoons",
+      "meta": [],
+      "measures": {
+        "us": { "amount": 2, "unitShort": "tsps", "unitLong": "teaspoons" },
+        "metric": { "amount": 2, "unitShort": "tsps", "unitLong": "teaspoons" }
+      }
+    },
+    {
+      "id": 23557,
+      "aisle": "Meat",
+      "image": "fresh-ground-beef.jpg",
+      "consistency": "SOLID",
+      "name": "ground beef",
+      "nameClean": "95 percent lean ground beef",
+      "original": "3 pounds lean ground beef",
+      "originalName": "lean ground beef",
+      "amount": 3,
+      "unit": "pounds",
+      "meta": ["lean"],
+      "measures": {
+        "us": { "amount": 3, "unitShort": "lb", "unitLong": "pounds" },
+        "metric": { "amount": 1.361, "unitShort": "kgs", "unitLong": "kgs" }
+      }
+    },
+    {
+      "id": 9159,
+      "aisle": "Produce",
+      "image": "lime.jpg",
+      "consistency": "SOLID",
+      "name": "lime",
+      "nameClean": "lime",
+      "original": "freshly squeezed lime",
+      "originalName": "freshly squeezed lime",
+      "amount": 8,
+      "unit": "servings",
+      "meta": ["freshly squeezed"],
+      "measures": {
+        "us": { "amount": 8, "unitShort": "servings", "unitLong": "servings" },
+        "metric": {
+          "amount": 8,
+          "unitShort": "servings",
+          "unitLong": "servings"
+        }
+      }
+    },
+    {
+      "id": 1006970,
+      "aisle": "Canned and Jarred",
+      "image": "img.spoonacular.",
+      "consistency": "SOLID",
+      "name": "chicken stock",
+      "nameClean": "low sodium chicken stock",
+      "original": "6 cups to 7 reduced-sodium beef or chicken stock",
+      "originalName": "to 7 reduced-sodium beef or chicken stock",
+      "amount": 6,
+      "unit": "cups",
+      "meta": ["reduced-sodium"],
+      "measures": {
+        "us": { "amount": 6, "unitShort": "cups", "unitLong": "cups" },
+        "metric": { "amount": 1.416, "unitShort": "l", "unitLong": "liters" }
+      }
+    },
+    {
+      "id": 1001025,
+      "aisle": "Cheese",
+      "image": "shredded-cheese-white.jpg",
+      "consistency": "SOLID",
+      "name": "monterey jack cheese",
+      "nameClean": "monterey jack cheese",
+      "original": "monterey jack cheese",
+      "originalName": "monterey jack cheese",
+      "amount": 8,
+      "unit": "servings",
+      "meta": [],
+      "measures": {
+        "us": { "amount": 8, "unitShort": "servings", "unitLong": "servings" },
+        "metric": {
+          "amount": 8,
+          "unitShort": "servings",
+          "unitLong": "servings"
+        }
+      }
+    },
+    {
+      "id": 4053,
+      "aisle": "Oil, Vinegar, Salad Dressing",
+      "image": "olive-oil.jpg",
+      "consistency": "LIQUID",
+      "name": "olive oil",
+      "nameClean": "olive oil",
+      "original": "1/4 cup olive oil",
+      "originalName": "olive oil",
+      "amount": 0.25,
+      "unit": "cup",
+      "meta": [],
+      "measures": {
+        "us": { "amount": 0.25, "unitShort": "cups", "unitLong": "cups" },
+        "metric": { "amount": 54, "unitShort": "ml", "unitLong": "milliliters" }
+      }
+    },
+    {
+      "id": 10511282,
+      "aisle": "Produce",
+      "image": "brown-onion.png",
+      "consistency": "SOLID",
+      "name": "onions",
+      "nameClean": "yellow onion",
+      "original": "2 mediums yellow onions",
+      "originalName": "s yellow onions",
+      "amount": 2,
+      "unit": "medium",
+      "meta": ["yellow"],
+      "measures": {
+        "us": { "amount": 2, "unitShort": "medium", "unitLong": "mediums" },
+        "metric": { "amount": 2, "unitShort": "medium", "unitLong": "mediums" }
+      }
+    },
+    {
+      "id": 2027,
+      "aisle": "Produce",
+      "image": "oregano.jpg",
+      "consistency": "SOLID",
+      "name": "oregano",
+      "nameClean": "oregano",
+      "original": "4 teaspoons dried oregano",
+      "originalName": "dried oregano",
+      "amount": 4,
+      "unit": "teaspoons",
+      "meta": ["dried"],
+      "measures": {
+        "us": { "amount": 4, "unitShort": "tsps", "unitLong": "teaspoons" },
+        "metric": { "amount": 4, "unitShort": "tsps", "unitLong": "teaspoons" }
+      }
+    },
+    {
+      "id": 10023003,
+      "aisle": "Meat",
+      "image": "tbone-or-porterhouse-raw.jpg",
+      "consistency": "SOLID",
+      "name": "sirloin steak",
+      "nameClean": "porterhouse steak",
+      "original": "1 1/2 pounds sirloin steak, cut into small chunks",
+      "originalName": "sirloin steak, cut into small chunks",
+      "amount": 1.5,
+      "unit": "pounds",
+      "meta": ["cut into small chunks"],
+      "measures": {
+        "us": { "amount": 1.5, "unitShort": "lb", "unitLong": "pounds" },
+        "metric": { "amount": 680.389, "unitShort": "g", "unitLong": "grams" }
+      }
+    },
+    {
+      "id": 1056,
+      "aisle": "Milk, Eggs, Other Dairy",
+      "image": "sour-cream.jpg",
+      "consistency": "SOLID",
+      "name": "cream",
+      "nameClean": "sour cream",
+      "original": "sour cream",
+      "originalName": "sour cream",
+      "amount": 8,
+      "unit": "servings",
+      "meta": ["sour"],
+      "measures": {
+        "us": { "amount": 8, "unitShort": "servings", "unitLong": "servings" },
+        "metric": {
+          "amount": 8,
+          "unitShort": "servings",
+          "unitLong": "servings"
+        }
+      }
+    }
+  ],
+  "id": 662376,
+  "title": "Superbowl Chili",
+  "readyInMinutes": 45,
+  "servings": 8,
+  "sourceUrl": "https://www.foodista.com/recipe/DMQTR5ZC/superbowl-chili",
+  "image": "https://img.spoonacular.com/recipes/662376-556x370.jpg",
+  "imageType": "jpg",
+  "summary": "If you want to add more <b>gluten free</b> recipes to your recipe box, Superbowl Chili might be a recipe you should try. This recipe serves 8. This main course has <b>662 calories</b>, <b>64g of protein</b>, and <b>33g of fat</b> per serving. For <b>$5.06 per serving</b>, this recipe <b>covers 42%</b> of your daily requirements of vitamins and minerals. It will be a hit at your <b>The Super Bowl</b> event. 3 people were impressed by this recipe. It is a <b>pricey</b> recipe for fans of American food. This recipe from Foodista requires lime, canned tomatoes, sirloin steak, and chipotle chile pepper in adobo sauce. From preparation to the plate, this recipe takes about <b>45 minutes</b>. Taking all factors into account, this recipe <b>earns a spoonacular score of 83%</b>, which is super. Similar recipes are <a href=\"https://spoonacular.com/recipes/superbowl-chili-1372949\">Superbowl Chili</a>, <a href=\"https://spoonacular.com/recipes/superbowl-chili-1406039\">Superbowl Chili</a>, and <a href=\"https://spoonacular.com/recipes/lean-mean-game-day-chili-superbowl-550253\">Lean Mean Game Day Chili – Superbowl</a>.",
+  "cuisines": ["American"],
+  "dishTypes": ["lunch", "soup", "main course", "main dish", "dinner"],
+  "diets": ["gluten free"],
+  "occasions": ["super bowl"],
+  "instructions": "<ol><li>In a large heavy pot set over high heat, saute ground beef and steak chunks, stirring frequently, until browned, about 8 minutes. With a slotted spoon, remove beef to a plate and pour off the remaining liquid in the pan. (I used a strainer over a large bowl, and put all the meat in it to drain the excess fat off).</li><li>Add olive oil to the same pot that you cooked your meat in and set over medium heat. When hot, add carrots, onions, and garlic and saute, stirring, until softened, about 5 minutes. Return beef to pot, and add chili powder, cumin, oregano, salt, and chopped chipotle chile; stir and cook 1 minute. Add tomatoes and broth. Bring to a simmer, reduce heat to a gentle simmer, and cook for 30 minutes more, stirring occasionally. Much of the liquid will cook down during this time.</li><li>Stir in all but 1/3 cup of black beans and cook 5 minutes more. Mash reserved beans with a fork, and stir into the chili to give it extra body. If chili is too thick, stir in as much as 1 cup additional broth and heat several minutes to warm. Chili can be prepared two days ahead. Cool, cover and refrigerate. Reheat over medium heat, stirring often.</li><li>Ladle into bowls and garnish with toppings. Enjoy!</li></ol>",
+  "analyzedInstructions": [
+    {
+      "name": "",
+      "steps": [
+        {
+          "number": 1,
+          "step": "In a large heavy pot set over high heat, saute ground beef and steak chunks, stirring frequently, until browned, about 8 minutes. With a slotted spoon, remove beef to a plate and pour off the remaining liquid in the pan. (I used a strainer over a large bowl, and put all the meat in it to drain the excess fat off).",
+          "ingredients": [
+            {
+              "id": 10023572,
+              "name": "ground beef",
+              "localizedName": "ground beef",
+              "image": "fresh-ground-beef.jpg"
+            },
+            {
+              "id": 23232,
+              "name": "steak",
+              "localizedName": "steak",
+              "image": "ribeye-raw.jpg"
+            },
+            {
+              "id": 23572,
+              "name": "beef",
+              "localizedName": "beef",
+              "image": "beef-cubes-raw.png"
+            },
+            {
+              "id": 1065062,
+              "name": "meat",
+              "localizedName": "meat",
+              "image": "whole-chicken.jpg"
+            }
+          ],
+          "equipment": [
+            {
+              "id": 404636,
+              "name": "slotted spoon",
+              "localizedName": "slotted spoon",
+              "image": "https://spoonacular.com/cdn/equipment_100x100/slotted-spoon.jpg"
+            },
+            {
+              "id": 405600,
+              "name": "sieve",
+              "localizedName": "sieve",
+              "image": "https://spoonacular.com/cdn/equipment_100x100/strainer.png"
+            },
+            {
+              "id": 404783,
+              "name": "bowl",
+              "localizedName": "bowl",
+              "image": "https://spoonacular.com/cdn/equipment_100x100/bowl.jpg"
+            },
+            {
+              "id": 404645,
+              "name": "frying pan",
+              "localizedName": "frying pan",
+              "image": "https://spoonacular.com/cdn/equipment_100x100/pan.png"
+            },
+            {
+              "id": 404752,
+              "name": "pot",
+              "localizedName": "pot",
+              "image": "https://spoonacular.com/cdn/equipment_100x100/stock-pot.jpg"
+            }
+          ],
+          "length": { "number": 8, "unit": "minutes" }
+        },
+        {
+          "number": 2,
+          "step": "Add olive oil to the same pot that you cooked your meat in and set over medium heat. When hot, add carrots, onions, and garlic and saute, stirring, until softened, about 5 minutes. Return beef to pot, and add chili powder, cumin, oregano, salt, and chopped chipotle chile; stir and cook 1 minute.",
+          "ingredients": [
+            {
+              "id": 98839,
+              "name": "chipotle chiles",
+              "localizedName": "chipotle chiles",
+              "image": "chile-chipotle.jpg"
+            },
+            {
+              "id": 2009,
+              "name": "chili powder",
+              "localizedName": "chili powder",
+              "image": "chili-powder.jpg"
+            },
+            {
+              "id": 4053,
+              "name": "olive oil",
+              "localizedName": "olive oil",
+              "image": "olive-oil.jpg"
+            },
+            {
+              "id": 11124,
+              "name": "carrot",
+              "localizedName": "carrot",
+              "image": "sliced-carrot.png"
+            },
+            {
+              "id": 2027,
+              "name": "oregano",
+              "localizedName": "oregano",
+              "image": "oregano.jpg"
+            },
+            {
+              "id": 11215,
+              "name": "garlic",
+              "localizedName": "garlic",
+              "image": "garlic.png"
+            },
+            {
+              "id": 11282,
+              "name": "onion",
+              "localizedName": "onion",
+              "image": "brown-onion.png"
+            },
+            {
+              "id": 1002014,
+              "name": "cumin",
+              "localizedName": "cumin",
+              "image": "ground-cumin.jpg"
+            },
+            {
+              "id": 23572,
+              "name": "beef",
+              "localizedName": "beef",
+              "image": "beef-cubes-raw.png"
+            },
+            {
+              "id": 1065062,
+              "name": "meat",
+              "localizedName": "meat",
+              "image": "whole-chicken.jpg"
+            },
+            {
+              "id": 2047,
+              "name": "salt",
+              "localizedName": "salt",
+              "image": "salt.jpg"
+            }
+          ],
+          "equipment": [
+            {
+              "id": 404752,
+              "name": "pot",
+              "localizedName": "pot",
+              "image": "https://spoonacular.com/cdn/equipment_100x100/stock-pot.jpg"
+            }
+          ],
+          "length": { "number": 6, "unit": "minutes" }
+        },
+        {
+          "number": 3,
+          "step": "Add tomatoes and broth. Bring to a simmer, reduce heat to a gentle simmer, and cook for 30 minutes more, stirring occasionally. Much of the liquid will cook down during this time.Stir in all but 1/3 cup of black beans and cook 5 minutes more. Mash reserved beans with a fork, and stir into the chili to give it extra body. If chili is too thick, stir in as much as 1 cup additional broth and heat several minutes to warm. Chili can be prepared two days ahead. Cool, cover and refrigerate. Reheat over medium heat, stirring often.Ladle into bowls and garnish with toppings. Enjoy!",
+          "ingredients": [
+            {
+              "id": 16015,
+              "name": "black beans",
+              "localizedName": "black beans",
+              "image": "black-beans.jpg"
+            },
+            {
+              "id": 11529,
+              "name": "tomato",
+              "localizedName": "tomato",
+              "image": "tomato.png"
+            },
+            {
+              "id": 0,
+              "name": "beans",
+              "localizedName": "beans",
+              "image": "kidney-beans.jpg"
+            },
+            {
+              "id": 1006615,
+              "name": "broth",
+              "localizedName": "broth",
+              "image": "chicken-broth.png"
+            },
+            {
+              "id": 11819,
+              "name": "chili pepper",
+              "localizedName": "chili pepper",
+              "image": "red-chili.jpg"
+            }
+          ],
+          "equipment": [
+            {
+              "id": 404783,
+              "name": "bowl",
+              "localizedName": "bowl",
+              "image": "https://spoonacular.com/cdn/equipment_100x100/bowl.jpg"
+            },
+            {
+              "id": 404630,
+              "name": "ladle",
+              "localizedName": "ladle",
+              "image": "https://spoonacular.com/cdn/equipment_100x100/ladle.jpg"
+            }
+          ],
+          "length": { "number": 35, "unit": "minutes" }
+        }
+      ]
+    }
+  ],
+  "originalId": null,
+  "spoonacularScore": 85.82847595214844,
+  "spoonacularSourceUrl": "https://spoonacular.com/superbowl-chili-662376"
+}

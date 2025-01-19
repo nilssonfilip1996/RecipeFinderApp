@@ -2,37 +2,62 @@
 
 
 <div class="container">
-    <% if(locals.recipe) { %>
+    <% if(Object.keys(locals.userSearch.chosenRecipe).length>0) { %>
       <!-- Recipe section -->
       <section class="mt-4">
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-md-6 card">
+            <div class="col-md-6 card bg-body-tertiary">
               <div class="d-flex flex-column">
                 <div>
-                  <h2 class="mt-2"><%= recipe.title %></h2>
+                  <h2 class="mt-2"><%= userSearch.chosenRecipe.title %></h2>
                 </div>
                 <div class="align-self-center">
-                  <img class="card-img img-recipe" src=<%= recipe.image %> class="" alt="..." onerror="this.src='https://placehold.co/312x231'">
+                  <img class="card-img img-recipe" src=<%= userSearch.chosenRecipe.image %> class="" alt="..." onerror="this.src='https://placehold.co/312x231'">
                   
                 </div>
                 <div class="container mt-4">
                   <div class="row">
-                    <h3 class="mb-1">Ingredients:</h3>
-                    <h5 class="mb-3">Servings: <%= recipe.servings %></h5>
-                    <% recipe.extendedIngredients.forEach(ingredient => { %>
-                      <!-- <div class="col-3"><img class="img-ingredient" src="https://img.spoonacular.com/ingredients_100x100/<%=ingredient.image%>" alt="" onerror="this.src='https://placehold.co/70x70'"></div> -->
-                      <div class=""><%= Math.floor(ingredient.measures.metric.amount)  %> <%= ingredient.measures.metric.unitShort %> <%= ingredient.name %> </div>
-                      <hr class="hr" />
-                    <% }); %>
+                    <div class="col-12 d-flex flex-row">
+                      <div class="d-flex flex-column align-items-center mx-auto">
+                        <img class="" src="/images/fork-and-spoon-meal-svgrepo-com.svg" width="30px" alt="">
+                        <h5 class="my-auto">Servings: <%= userSearch.chosenRecipe.servings %></h5>
+                      </div>
+                      <div class="vr"></div>
+                      <div class="d-flex flex-column align-items-center mx-auto">
+                        <img class="" src="/images/alarm-clock-svgrepo-com.svg" width="30px" alt="">
+                        <h5 class="my-auto"><%= userSearch.chosenRecipe.readyInMinutes %> min</h5>
+                      </div>
+                      <div class="vr"></div>
+                      <div class="d-flex flex-column align-items-center mx-auto">
+                        <img class="" src="/images/rating-svgrepo-com.svg" width="30px" alt="">
+                        <div class="d-flex flex-row">
+                          <h5 class="my-auto">Score: <%= Math.floor(userSearch.chosenRecipe.spoonacularScore) %></h5>
+                          <img class="" src="/images/question-circle-svgrepo-com.svg" width="20px" alt="" data-bs-toggle="tooltip" data-bs-html="true" title="<p>The <b>spoonacular score compares the recipe with all the other recipes on Spoonacular.com</b>. Score 100 and the author has achieved total recipe domination. Score 0% and someone has probably managed to upload one of the worst recipes on the website.</p><p>Spoonacular's <b>top-secret formula</b> takes into consideration price (the cheaper the better!), difficulty (the easier the better!), popularity (# of Facebook likes, Pinterest pins, spoonacular saves...), and the health score.</p>">
+                        </div>
+
+                      </div>
+                    </div>
                   </div>
+                  <div class="row">
+                    <h3 class="my-3">Ingredients:</h3>
+                  </div>
+                  <% userSearch.chosenRecipe.extendedIngredients.forEach(ingredient => { %>
+                    <div class="row">
+                      <!-- <div class="col-3"><img class="img-ingredient" src="https://img.spoonacular.com/ingredients_100x100/<%=ingredient.image%>" alt="" onerror="this.src='https://placehold.co/70x70'"></div> -->
+                      <div class=""><%= Math.floor(ingredient.measures.metric.amount)  %> <%= ingredient.measures.metric.unitShort %> <b><%= ingredient.name %></b></div>
+                    </div>
+                    <div class="row">
+                      <hr class="hr" />
+                    </div>
+                  <% }); %>
                 </div>
               </div>
             </div>
             <div class="col-md-6 mt-4 mt-md-0">
               <h3 class="">Instructions:</h3>
               <ol>
-                <% recipe.analyzedInstructions[0].steps.forEach(step => { %>
+                <% userSearch.chosenRecipe.analyzedInstructions[0].steps.forEach(step => { %>
                   <li class="mb-4"><%= step.step %></li>
                 <% }); %>
               </ol>
@@ -107,7 +132,10 @@
             }); 
         });    
     }); */
-
+    document.addEventListener("DOMContentLoaded", function (event) {
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    });
 </script>
         
 <%- include('partials/footer.ejs') %> 

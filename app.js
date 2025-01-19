@@ -15,6 +15,7 @@ const apiKey = process.env.API_KEY;
 let userSearch = {
     "cousine":"",
     "protein":"",
+    "chosenRecipe":{},
     "searchResults":[]
 }
 
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
     userSearch = {
         "cousine":"",
         "protein":"",
+        "chosenRecipe":{},
         "searchResults":[]
     }
     res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch});
@@ -54,7 +56,14 @@ app.post("/complexSearch", async (req, res) => {
 app.post("/viewRecipe/:id", async (req, res) => {
     console.log(req.params.id);
     var recipe = await axios.get(`${API_URL}/recipes/${req.params.id}/information?apiKey=${apiKey}`);
+    userSearch.chosenRecipe = recipe.data;
     res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, recipe: recipe.data});
+
+    //Dummy data to reduce the amount of API-requests during testing.
+/*     let openJSON = fs.readFileSync('dummyRecipe.json', 'utf-8');
+    let dummyRecipe = JSON.parse(openJSON);
+    userSearch.chosenRecipe = dummyRecipe;
+    res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, recipe: dummyRecipe}); */
 });
 
 app.listen(port, () => {

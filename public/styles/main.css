@@ -45,3 +45,8 @@ body{
     height: 70px;
   }
 
+  .recipe-icon-img-max-width {
+    max-width: 40px;
+    width:50%;
+  }
+
