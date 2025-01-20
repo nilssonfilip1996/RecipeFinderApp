@@ -23,6 +23,7 @@ app.use(express.static("public"));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
+/* Default route. */
 app.get("/", (req, res) => {
     userSearch = {
         "cousine":"",
@@ -57,7 +58,7 @@ app.post("/complexSearch", async (req, res) => {
     
 
     //Dummy data to reduce the amount of API-requests during testing.
-/*     let openJSON = fs.readFileSync('dummyEntries.json', 'utf-8');
+/*     let openJSON = fs.readFileSync('./testData/dummyEntries.json', 'utf-8');
     let recipeList = JSON.parse(openJSON);
     userSearch.cousine = req.body.selectedCousine;
     userSearch.protein = req.body.selectedProtein;
@@ -80,7 +81,7 @@ app.post("/viewRecipe/:id", async (req, res) => {
     
 
     //Dummy data to reduce the amount of API-requests during testing.
-/*     let openJSON = fs.readFileSync('dummyRecipe.json', 'utf-8');
+/*     let openJSON = fs.readFileSync('./testData/dummyRecipe.json', 'utf-8');
     let dummyRecipe = JSON.parse(openJSON);
     userSearch.chosenRecipe = dummyRecipe;
     res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, recipe: dummyRecipe}); */
