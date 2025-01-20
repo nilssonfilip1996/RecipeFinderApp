@@ -2,7 +2,7 @@
 
 
 <div class="container my-auto">
-    <% if(Object.keys(locals.userSearch.chosenRecipe).length>0) { %>
+    <% if(locals.userSearch && Object.keys(locals.userSearch.chosenRecipe).length>0) { %>
       <!-- Recipe section -->
       <section class="mt-4">
         <div class="container">
@@ -42,7 +42,7 @@
                   </div>
                   <% userSearch.chosenRecipe.extendedIngredients.forEach(ingredient => { %>
                     <div class="row">
-                      <div class=""><%= Math.floor(ingredient.measures.metric.amount)  %> <%= ingredient.measures.metric.unitShort %> <b><%= ingredient.name %></b></div>
+                      <div class=""><%= Math.floor(ingredient.measures.metric.amount*100)/100  %> <%= ingredient.measures.metric.unitShort %> <b><%= ingredient.originalName %></b></div>
                     </div>
                     <div class="row">
                       <hr class="hr" />
@@ -68,36 +68,38 @@
       </section>
     <% } %>
 
-    <!-- Search -->
-    <section>
-      <h1 class="text-center">What are you craving?</h1>
-      <!-- Set of dropdowns for filtering recipes. -->
-      <form method="POST" action="/complexSearch">
-          <div class="d-flex justify-content-center column-gap-3">
-            <div class="">
-              <select name="selectedCousine" class="form-select" required>
-                  <option value="" disabled selected>Cousine:</option>
-                  <% cousines.forEach(cousine => {%>
-                      <option value=<%=cousine%> <%if(locals.userSearch.cousine == cousine){%> selected <%}%> ><%=cousine%></option> 
-                  <% }); %>
-              </select>
+    <% if(locals.userSearch) {%>
+      <!-- Search -->
+      <section>
+        <h1 class="text-center">What are you craving?</h1>
+        <!-- Set of dropdowns for filtering recipes. -->
+          <form method="POST" action="/complexSearch">
+            <div class="d-flex justify-content-center column-gap-1 column-gap-md-2 pe-0">
+              <div class="">
+                <select name="selectedCousine" class="form-select" required>
+                    <option value="" disabled selected>Cousine:</option>
+                    <% cousines.forEach(cousine => {%>
+                        <option value=<%=cousine%> <%if(locals.userSearch.cousine == cousine){%> selected <%}%> ><%=cousine%></option> 
+                    <% }); %>
+                </select>
+              </div>
+              <div class="">
+                <select name="selectedProtein" class="form-select" required>
+                    <option value="" disabled selected>Protein:</option>
+                    <% proteins.forEach(protein => {%>
+                        <option value=<%=protein%> <%if(locals.userSearch.protein == protein){%> selected <%}%> ><%=protein%></option>
+                    <% }); %>
+                </select>
+              </div>
+              <div class="">
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
             </div>
-            <div class="">
-              <select name="selectedProtein" class="form-select" required>
-                  <option value="" disabled selected>Protein:</option>
-                  <% proteins.forEach(protein => {%>
-                      <option value=<%=protein%> <%if(locals.userSearch.protein == protein){%> selected <%}%> ><%=protein%></option>
-                  <% }); %>
-              </select>
-            </div>
-            <div class="">
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
-      </form>
-    </section>
+        </form>
+      </section>
+    <% } %>
 
-    <% if(locals.userSearch.searchResults.length>0) { %>
+    <% if(locals.userSearch && locals.userSearch.searchResults.length>0) { %>
       <!-- Search Results. -->
       <section class="pt-3">
         <div class="container">
@@ -121,7 +123,7 @@
     <% } %>
     <% if(locals.error) { %>
         <h2 class="text-center my-4"><%= error %> </h2>
-      <% } %>
+    <% } %>
 </div>
 
 

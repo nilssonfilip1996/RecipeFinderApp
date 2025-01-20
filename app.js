@@ -34,20 +34,27 @@ app.get("/", (req, res) => {
 
 });
 
+/* Post-request. Called when the user wants to find recipes based on cousine and protein */
 app.post("/complexSearch", async (req, res) => {
     console.log(req.body);
-    var recipeList = await axios.get(`${API_URL}/recipes/complexSearch?apiKey=${API_KEY}&cuisine=${req.body.selectedCousine}&includeIngredients=${req.body.selectedProtein}&number=9&instructionsRequired=true`);
-    console.log(recipeList.data);
-    userSearch.cousine = req.body.selectedCousine;
-    userSearch.protein = req.body.selectedProtein;
-    userSearch.searchResults = recipeList.data.results;
-    //console.log(userSearch);
-    if(userSearch.searchResults<1){
-        res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, error: "No recipes found."});
+    try {
+        var recipeList = await axios.get(`${API_URL}/recipes/complexSearch?apiKey=${API_KEY}&cuisine=${req.body.selectedCousine}&includeIngredients=${req.body.selectedProtein}&number=9&instructionsRequired=true`);
+        userSearch.cousine = req.body.selectedCousine;
+        userSearch.protein = req.body.selectedProtein;
+        userSearch.searchResults = recipeList.data.results;
+        //console.log(userSearch);
+        if(userSearch.searchResults<1){
+            res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, error: "No recipes found."});
+        }
+        else{
+            res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch});
+        }
+    } catch (error) {
+        const stringifiedError = JSON.stringify(error.response.data);
+        console.log(stringifiedError);
+        res.render("index.ejs", {error: error.response.data.message});
     }
-    else{
-        res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch});
-    }
+    
 
     //Dummy data to reduce the amount of API-requests during testing.
 /*     let openJSON = fs.readFileSync('dummyEntries.json', 'utf-8');
@@ -58,11 +65,19 @@ app.post("/complexSearch", async (req, res) => {
     res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch}); */
 });
 
+/* Post-request. Called when the user wants to view a specific recipe based on it's id.*/
 app.post("/viewRecipe/:id", async (req, res) => {
     console.log(req.params.id);
-    var recipe = await axios.get(`${API_URL}/recipes/${req.params.id}/information?apiKey=${API_KEY}`);
-    userSearch.chosenRecipe = recipe.data;
-    res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, recipe: recipe.data});
+    try {
+        var recipe = await axios.get(`${API_URL}/recipes/${req.params.id}/information?apiKey=${API_KEY}`);
+        userSearch.chosenRecipe = recipe.data;
+        res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, recipe: recipe.data});
+    } catch (error) {
+        const stringifiedError = JSON.stringify(error.response.data);
+        console.log(stringifiedError);
+        res.render("index.ejs", {error: error.response.data.message});
+    }
+    
 
     //Dummy data to reduce the amount of API-requests during testing.
 /*     let openJSON = fs.readFileSync('dummyRecipe.json', 'utf-8');
