@@ -70,7 +70,7 @@
 
     <% if(locals.userSearch) {%>
       <!-- Search -->
-      <section>
+      <section <% if(locals.scrollToResults) {%> id="goTosearch" <%}%>>
         <h1 class="text-center">What are you craving?</h1>
         <!-- Set of dropdowns for filtering recipes. -->
           <form method="POST" action="/complexSearch">
@@ -79,7 +79,8 @@
                 <select name="selectedCousine" class="form-select" required>
                     <option value="" disabled selected>Cousine:</option>
                     <% cousines.forEach(cousine => {%>
-                        <option value=<%=cousine%> <%if(locals.userSearch.cousine == cousine){%> selected <%}%> ><%=cousine%></option> 
+                        <option <%if(locals.userSearch.cousine == cousine){%> selected <%}%> ><%=cousine%></option>
+                        
                     <% }); %>
                 </select>
               </div>
@@ -87,7 +88,7 @@
                 <select name="selectedProtein" class="form-select" required>
                     <option value="" disabled selected>Protein:</option>
                     <% proteins.forEach(protein => {%>
-                        <option value=<%=protein%> <%if(locals.userSearch.protein == protein){%> selected <%}%> ><%=protein%></option>
+                        <option <%if(locals.userSearch.protein == protein){%> selected <%}%> ><%=protein%></option>
                     <% }); %>
                 </select>
               </div>
@@ -129,9 +130,19 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
+      /* Shows tooltips when hovering over them */
       const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
       const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+      /* Smooth scroll to the search section if the id "goToSearch" is found. */
+      const searchResultsSection = document.getElementById("goTosearch");
+      if(searchResultsSection){
+        console.log("Searched");
+        searchResultsSection.scrollIntoView({behavior: "smooth", block: "start"});
+      }
     });
+
+
 </script>
         
 <%- include('partials/footer.ejs') %> 

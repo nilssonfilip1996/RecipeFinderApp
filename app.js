@@ -37,18 +37,18 @@ app.get("/", (req, res) => {
 
 /* Post-request. Called when the user wants to find recipes based on cousine and protein */
 app.post("/complexSearch", async (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     try {
         var recipeList = await axios.get(`${API_URL}/recipes/complexSearch?apiKey=${API_KEY}&cuisine=${req.body.selectedCousine}&includeIngredients=${req.body.selectedProtein}&number=9&instructionsRequired=true`);
         userSearch.cousine = req.body.selectedCousine;
         userSearch.protein = req.body.selectedProtein;
         userSearch.searchResults = recipeList.data.results;
-        //console.log(userSearch);
+        //console.log(req.body);
         if(userSearch.searchResults<1){
-            res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, error: "No recipes found."});
+            res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, error: "No recipes found.", scrollToResults: true});
         }
         else{
-            res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch});
+            res.render("index.ejs", {cousines: COUSINE_LIST, proteins: PROTEIN_LIST, userSearch, scrollToResults: true});
         }
     } catch (error) {
         const stringifiedError = JSON.stringify(error.response.data);
