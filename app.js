@@ -1,18 +1,43 @@
-import express from "express"
-import bodyParser from "body-parser"
-import recipeRouter from "./src/routes/recipeRoutes.js"
+import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
+import bodyParser from "body-parser";
+import session from "express-session";
+import passport from "passport";
+import indexRouter from "./src/routes/index.js";
+import "./src/strategies/local-strategy.js";
 
-const app = express();
 const port = 3000;
 
-app.use(express.static("public"));
+function initApp() {
+  
+  const app = express();
 
-app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(express.static("public"));
+  app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(recipeRouter);
+  app.use(
+    session({
+      secret: "TOPSECRETWORD",
+      resave: false,
+      saveUninitialized: true,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24,
+      },
+    })
+  );
+
+  //Innitialize passport and the local strategy.
+  app.use(passport.initialize());
+  app.use(passport.session());
+
+  app.use(indexRouter);
+
+  return app;
+}
+
+const app = initApp();
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-  });
-
-
+  console.log(`Server is running on port ${port}`);
+});

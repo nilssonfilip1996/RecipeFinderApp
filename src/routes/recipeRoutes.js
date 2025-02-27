@@ -1,14 +1,8 @@
 import { Router } from "express";
 import { searchForRecipes, getRecipe } from "../utils/spoonacularHandler.js"
-import dotenv from "dotenv";
 import { PROTEIN_LIST, COUSINE_LIST} from "../../public/constants/searchParameters.js";
 
-dotenv.config();
-
 const router = Router();
-
-const API_URL = "https://api.spoonacular.com";
-const API_KEY = process.env.API_KEY;
 
 let userSearch = {
     "cousine":"",
@@ -19,6 +13,9 @@ let userSearch = {
 
 /* Default route. */
 router.get("/", (req, res) => {
+    if(req.isAuthenticated()){
+        console.log(`${req.user.username} is online.`);
+    }
     userSearch = {
         "cousine":"",
         "protein":"",
