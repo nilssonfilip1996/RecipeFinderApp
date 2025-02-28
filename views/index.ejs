@@ -2,50 +2,24 @@
 
 
 <div class="container my-auto">
-    <% if(locals.localSession && Object.keys(locals.localSession.chosenRecipe).length>0) { %>
-      <!-- Recipe section -->
-      <%- include('partials/recipeSection.ejs') %> 
-    <% } %>
+  <!-- Start of Recipe section -->
+  <% if(locals.selectedRecipe && Object.keys(selectedRecipe).length>0) { %>
+    <%- include('partials/recipeSection.ejs') %> 
+  <% } %>
+  <!-- End of Recipe section -->
 
-    <% if(locals.localSession) {%>
-      <!-- Search section -->
-      <section <% if(locals.scrollToResults) {%> id="goTosearch" <%}%>>
-        <h1 class="text-center">What are you craving?</h1>
-        <!-- Set of dropdowns for filtering recipes. -->
-          <form method="POST" action="/recipeSearch">
-            <div class="d-flex justify-content-center column-gap-1 column-gap-md-2 pe-0">
-              <div class="">
-                <select name="selectedCousine" class="form-select" required>
-                    <option value="" disabled selected>Cousine:</option>
-                    <% cousines.forEach(cousine => {%>
-                        <option <%if(locals.localSession.cousine == cousine){%> selected <%}%> ><%=cousine%></option>
-                        
-                    <% }); %>
-                </select>
-              </div>
-              <div class="">
-                <select name="selectedProtein" class="form-select" required>
-                    <option value="" disabled selected>Protein:</option>
-                    <% proteins.forEach(protein => {%>
-                        <option <%if(locals.localSession.protein == protein){%> selected <%}%> ><%=protein%></option>
-                    <% }); %>
-                </select>
-              </div>
-              <div class="">
-                <button type="submit" class="btn btn-primary">Submit</button>
-              </div>
-            </div>
-        </form>
-      </section>
-    <% } %>
+  <!-- Start of Search section -->
+  <%- include('partials/searchSection.ejs') %> 
+  <!-- End of Search section -->
 
-    <% if(locals.localSession && locals.localSession.searchResults.length>0) { %>
-      <!-- Search Results. -->
-      <%- include('partials/recipesGrid.ejs') %>
-    <% } %>
-    <% if(locals.error) { %>
-        <h2 class="text-center my-4"><%= error %> </h2>
-    <% } %>
+  <!-- Start of Search Results section. -->
+  <% if(locals.searchResults && locals.searchResults.length>0) { %>
+    <%- include('partials/recipesGrid.ejs') %>
+  <% } %>
+  <% if(locals.error) { %>
+      <h2 class="text-center my-4"><%= error %> </h2>
+  <% } %>
+  <!-- End of Search Results section. -->
 </div>
 
 

@@ -1,0 +1,27 @@
+<section <% if(locals.scrollToResults) {%> id="goTosearch" <%}%>>
+    <h1 class="text-center">What are you craving?</h1>
+    <!-- Set of dropdowns for filtering recipes. -->
+      <form method="POST" action="/recipeSearch">
+        <div class="d-flex justify-content-center column-gap-1 column-gap-md-2 pe-0">
+          <div class="">
+            <select name="selectedCousine" class="form-select" required>
+                <option value="" disabled selected>Cousine:</option>
+                <% dropDownValues.cousines.forEach(cousine => {%>
+                    <option <%if(locals.selectedSearchParams.cousine == cousine){%> selected <%}%> ><%=cousine%></option>
+                <% }); %>
+            </select>
+          </div>
+          <div class="">
+            <select name="selectedProtein" class="form-select" required>
+                <option value="" disabled selected>Protein:</option>
+                <% dropDownValues.proteins.forEach(protein => {%>
+                    <option <%if(locals.selectedSearchParams.protein == protein){%> selected <%}%> ><%=protein%></option>
+                <% }); %>
+            </select>
+          </div>
+          <div class="">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+    </form>
+  </section>
