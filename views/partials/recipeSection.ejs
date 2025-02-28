@@ -1,0 +1,62 @@
+<section class="mt-4">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6 card bg-body-tertiary">
+          <div class="d-flex flex-column">
+            <div>
+              <h2 class="my-4"><%= localSession.chosenRecipe.title %></h2>
+            </div>
+            <div class="align-self-center">
+              <img class="card-img img-recipe" src=<%= localSession.chosenRecipe.image %> alt="..." onerror="this.src='https://placehold.co/312x231'">
+            </div>
+            <div class="container mt-4">
+              <div class="row">
+                <div class="col-12 d-flex flex-row">
+                  <div class="d-flex flex-column align-items-center mx-auto">
+                    <img class="" src="/images/fork-and-spoon-meal-svgrepo-com.svg" width="30px" alt="">
+                    <h5 class="my-auto">Servings: <%= localSession.chosenRecipe.servings %></h5>
+                  </div>
+                  <div class="vr"></div>
+                  <div class="d-flex flex-column align-items-center mx-auto">
+                    <img class="" src="/images/alarm-clock-svgrepo-com.svg" width="30px" alt="">
+                    <h5 class="my-auto"><%= localSession.chosenRecipe.readyInMinutes %> min</h5>
+                  </div>
+                  <div class="vr"></div>
+                  <div class="d-flex flex-column align-items-center mx-auto">
+                    <img class="" src="/images/rating-svgrepo-com.svg" width="30px" alt="">
+                    <div class="d-flex flex-row">
+                      <h5 class="my-auto">Score: <%= Math.floor(localSession.chosenRecipe.spoonacularScore) %></h5>
+                      <img class="" src="/images/question-circle-svgrepo-com.svg" width="20px" alt="" data-bs-toggle="tooltip" data-bs-html="true" title="<p>The <b>spoonacular score is determined by comparing the recipe with all the other recipes on Spoonacular.com</b>. A score of 100 means the author has achieved total recipe domination. Score 0 and someone has probably managed to upload one of the worst recipes on the website.</p><p>Spoonacular's <b>top-secret formula</b> takes into consideration price (the cheaper the better!), difficulty (the easier the better!), popularity (# of Facebook likes, Pinterest pins, spoonacular saves...), and the health score.</p>">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <h3 class="my-3">Ingredients:</h3>
+              </div>
+              <% localSession.chosenRecipe.extendedIngredients.forEach(ingredient => { %>
+                <div class="row">
+                  <div class=""><%= Math.floor(ingredient.measures.metric.amount*100)/100  %> <%= ingredient.measures.metric.unitShort %> <b><%= ingredient.originalName %></b></div>
+                </div>
+                <div class="row">
+                  <hr class="hr" />
+                </div>
+              <% }); %>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mt-4 mt-md-0">
+          <h3 class="">Summary:</h3>
+          <p><%- localSession.chosenRecipe.summary %> </p>
+          <hr class="hr" />
+          <h3 class="">Instructions:</h3>
+          <ol>
+            <% localSession.chosenRecipe.analyzedInstructions[0].steps.forEach(step => { %>
+              <li class="mb-4"><%= step.step %></li>
+            <% }); %>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <hr class="hr my-5" />
+  </section>

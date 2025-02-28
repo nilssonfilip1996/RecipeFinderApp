@@ -1,0 +1,19 @@
+<section class="pt-3">
+    <div class="container">
+      <div class="row row-cols-3 justify-content-center g-4">
+        <% localSession.searchResults.forEach(result => { %>
+          <div class="col-12 col-md-6 col-lg-4">
+            <div class="search-result-card card text-bg-dark">
+              <img src=<%= result.image %> class="card-img" alt="..." onerror="this.src='https://placehold.co/312x231'">
+              <div class="card-img-overlay d-flex flex-column justify-content-around align-items-start">
+                <h5 class="card-title"><%= result.title %> </h5>
+                <form method="post">
+                  <button type="submit" class="btn btn-success" formaction="/viewRecipe/<%=result.id%>">See recipe</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        <% }); %>
+      </div>
+    </div>
+  </section>
