@@ -8,7 +8,7 @@ const router = Router();
  */
 router.post(
   "/auth",
-  passport.authenticate("local"),
+  passport.authenticate("local", { failureRedirect: "/login", failureMessage: true}),
   (request, response) => {
     response.redirect("/");
   }

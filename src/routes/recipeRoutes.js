@@ -10,11 +10,11 @@ const router = Router();
 
 /* Default route. */
 router.get("/", (req, res) => {
-  if (req.isAuthenticated()) {
+/*   if (req.isAuthenticated()) {
     console.log(`${req.user.username} is online.`);
-  }
+  } */
 
-  /* Remember what the user enters so sumbsequent requests can auto-fill forms etc. */
+  /* Remember what the user enters so subsequent requests can auto-fill forms etc. */
   req.session.currentState = {
     selectedSearchParams: {cousine: "",protein: ""},
     chosenRecipe: {},
@@ -28,7 +28,7 @@ router.get("/", (req, res) => {
 });
 
 /* Post-request. Called when the user wants to find recipes based on cousine and protein */
-router.post("/recipeSearch", async (req, res) => {
+router.post("/recipe/search", async (req, res) => {
   try {
     var recipeList = await searchForRecipes(
       req.body.selectedCousine,
@@ -59,7 +59,7 @@ router.post("/recipeSearch", async (req, res) => {
 });
 
 /* Post-request. Called when the user wants to view a specific recipe based on it's id.*/
-router.post("/viewRecipe/:id", async (req, res) => {
+router.post("/recipe/view/:id", async (req, res) => {
   try {
     var recipe = await getRecipe(req.params.id);
     req.session.currentState.chosenRecipe = recipe.data;

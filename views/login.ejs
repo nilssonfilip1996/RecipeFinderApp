@@ -12,6 +12,9 @@
               <label for="exampleInputPassword1" class="form-label">Password</label>
               <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
             </div>
+            <% if(locals.loginError) { %>
+              <p class="text-danger"><%= loginError %></p>
+            <% } %>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
     </div>
