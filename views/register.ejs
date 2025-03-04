@@ -1,0 +1,52 @@
+<%- include('partials/header.ejs') %> 
+
+<div class="container my-auto">
+    <div class="row justify-content-center">
+        <form class="col-lg-4" id="form-validation" method="post" action="/auth/register">
+            <div class="mb-3">
+              <label for="emailInputRegister" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="emailInputRegister" aria-describedby="emailHelp" name="username" required>
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <% if(locals.registerError) { %>
+                <p class="text-danger" id="duplicateUserError"> <%= locals.registerError %> </p>
+            <% } %>
+            <div class="mb-3">
+              <label for="passwordInputRegister" class="form-label">Password</label>
+              <input type="password" class="form-control" id="passwordInputRegister" name="password" required>
+            </div>
+            <div class="mb-3">
+                <label for="passwordInputRegisterConfirm" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="passwordInputRegisterConfirm" name="passwordConfirm" required>
+            </div>
+            <div class="" id="">
+                <p class="text-danger" id="passwordMatchError"></p>
+            </div>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            
+          </form>
+    </div>
+</div>
+
+<script>
+    //Logic to check that the two password fields match.
+    var form = document.getElementById("form-validation");
+    form.addEventListener("submit", function(event) {          
+        if ( document.getElementById("passwordInputRegister").value != document.getElementById("passwordInputRegisterConfirm").value ) {
+            //alert("Password mismatch");
+            event.preventDefault();
+            event.stopPropagation();
+            document.getElementById("passwordMatchError").innerText = "Password mismatch!";
+        }
+/*         else if (form.checkValidity() == false) {
+            event.preventDefault();
+            event.stopPropagation();
+        } */
+        }, false);
+
+</script>
+
+
+<%- include('partials/footer.ejs') %> 

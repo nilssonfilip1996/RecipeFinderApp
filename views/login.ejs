@@ -2,20 +2,25 @@
 
 <div class="container my-auto">
     <div class="row justify-content-center">
-        <form class="col-lg-4" method="post" action="/auth">
+        <form class="col-lg-4" method="post" action="/auth/login">
             <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="username" required>
+              <label for="emailInputLogin" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="emailInputLogin" aria-describedby="emailHelp" name="username" required>
               <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
             </div>
             <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" name="password" required>
+              <label for="passwordInputLogin" class="form-label">Password</label>
+              <input type="password" class="form-control" id="passwordInputLogin" name="password" required>
             </div>
             <% if(locals.loginError) { %>
               <p class="text-danger"><%= loginError %></p>
             <% } %>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="d-grid">
+              <button type="submit" class="btn btn-primary">Submit</button>
+              <hr class="hr" />
+              <a href="/auth/register" class="btn btn-success" >Register</a>
+            </div>
+            
           </form>
     </div>
 </div>
