@@ -10,9 +10,12 @@ const router = Router();
 
 /* Default route. */
 router.get("/", (req, res) => {
-  if (req.isAuthenticated()) {
+/*   if (req.isAuthenticated()) {
     console.log(`${req.user.username} is online.`);
-  }
+  } */
+  /* console.log("");
+  console.log(req.session);
+  console.log(""); */
 
   /* Remember what the user enters so subsequent requests can auto-fill forms etc. */
   req.session.currentState = {
@@ -23,7 +26,7 @@ router.get("/", (req, res) => {
   res.render("index.ejs", {
     dropDownValues: dropDownValues,
     selectedSearchParams: req.session.currentState.selectedSearchParams,
-    currentState: req.session.currentState,
+    user: req.session.passport ? req.session.passport.user : null,
   });
 });
 
@@ -51,10 +54,11 @@ router.post("/recipe/search", async (req, res) => {
       selectedRecipe: req.session.currentState.chosenRecipe,
       error: displayError,
       scrollToResults: true,
+      user: req.session.passport ? req.session.passport.user : null,
     });
   } catch (error) {
     console.log(JSON.stringify(error.response.data));
-    res.render("index.ejs", { error: error.response.data.message });
+    res.render("index.ejs", { error: error.response.data.message, user: req.session.passport ? req.session.passport.user : null });
   }
 });
 
@@ -64,16 +68,21 @@ router.post("/recipe/view/:id", async (req, res) => {
     var recipe = await getRecipe(req.params.id);
     req.session.currentState.chosenRecipe = recipe.data;
     
+    console.log("");
+    console.log(req.session);
+    console.log("");
+
     res.render("index.ejs", {
       dropDownValues: dropDownValues,
       selectedSearchParams: req.session.currentState.selectedSearchParams,
       searchResults: req.session.currentState.searchResults,
       selectedRecipe: req.session.currentState.chosenRecipe,
+      user: req.session.passport ? req.session.passport.user : null,
     });
   } catch (error) {
     const stringifiedError = JSON.stringify(error.response.data);
     console.log(stringifiedError);
-    res.render("index.ejs", { error: error.response.data.message });
+    res.render("index.ejs", { error: error.response.data.message, user: req.session.passport ? req.session.passport.user : null, });
   }
 });
 

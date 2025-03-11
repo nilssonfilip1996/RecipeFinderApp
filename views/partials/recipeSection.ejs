@@ -6,6 +6,18 @@
             <div>
               <h2 class="my-4"><%= selectedRecipe.title %></h2>
             </div>
+            <% if(locals.user) { %>
+              <div>
+                <form action="" method="get">
+                  <% if(locals.isChosenRecipeFavorite) {%>
+                    <button type="submit" class="btn btn-danger" formaction="/users/removeRecipe" >Remove Recipe</button>
+                  <% } else { %>
+                    <button type="submit" class="btn btn-success" formaction="/users/addRecipe" >Save Recipe</button>
+                  <% } %>
+                </form>
+              </div>
+            <% } %>
+
             <div class="align-self-center">
               <img class="card-img img-recipe" src=<%= selectedRecipe.image %> alt="..." onerror="this.src='https://placehold.co/312x231'">
             </div>

@@ -25,7 +25,11 @@
                         <a class="navbar-brand" href="/">Recipe Finder</a>
                     </div>
                     <div class="col d-flex justify-content-end my-auto">
-                        <a type="submit" href="/auth/login" class="btn btn-success">Login</a>
+                        <% if(locals.user) { %>                           
+                            <a type="submit" href="/auth/logOut" class="btn btn-danger">Log out</a>
+                        <% } else { %>
+                            <a type="submit" href="/auth/login" class="btn btn-success">Login</a>
+                        <% } %>
                     </div>
                 </div>
             </div>

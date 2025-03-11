@@ -1,41 +1,48 @@
 import passport from "passport";
 import { Strategy } from "passport-local";
 import db from "../db/index.js"
+import bcrypt from "bcryptjs";
 
 
 // Only during the authentication to specify what user information should be stored in the session.
 passport.serializeUser((user, done) => {
-	console.log(user.username);
+	console.log("Inside SerializeUser");
+	delete user.hashed_password;
 	done(null, user);
 });
 
 passport.deserializeUser((user, done) => {
+	console.log("Inside DeSerializeUser");
+	//console.log(user);
+	
 	done(null, user);
 });
 
-/* 
-    TODO: Logic for finding a user in the postgres db.
-        Use bcrypt to compare hashed password against the one that the user entered.
-*/
+
 export default passport.use(
 	new Strategy(async (username, password, done) => {
 		try {
-/*             console.log(`Username: ${username}`);
-            console.log(`Pasword: ${password}`); */
-			const foundUser = await db.query("SELECT * FROM users WHERE username=$1", [username,]);
+			const result = await db.query("SELECT * FROM users WHERE username=$1", [username,]);
 			
-			if(foundUser.rows.length<1){
+			if(result.rows.length<1){
 				console.log("Invalid username.");
 				return done(null, false, { message: 'Incorrect username or password.' });
 			}
-			if(foundUser.rows[0].hashed_password!=password){
-				console.log("Invalid password.");
-				
-				return done(null, false, { message: 'Incorrect username or password.' });
-			}
-			console.log("Password match!");
-			
-			done(null, foundUser.rows[0]);
+			const foundUser = result.rows[0];
+			const storedUserHashPassword = foundUser.hashed_password;
+			bcrypt.compare(password, storedUserHashPassword, (err, success) => {
+				if(err){
+					console.error("Error comparing passwords:", err);
+					throw new Error("Error comparing passwords");
+				} else {
+					if(success){
+						//Successful auth.
+						return done(null, foundUser);
+					} else {
+						return done(null, false, { message: 'Incorrect username or password.' });
+					}
+				}
+			});
 		} catch (err) {
 			done(err, null);
 		}
