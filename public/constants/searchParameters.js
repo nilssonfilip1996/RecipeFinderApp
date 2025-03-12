@@ -28,3 +28,4 @@ export const COUSINE_LIST = [
     "Thai",
     "Vietnamese"
   ];
+export const DROPDOWNVALUES = { proteins: PROTEIN_LIST, cousines: COUSINE_LIST };

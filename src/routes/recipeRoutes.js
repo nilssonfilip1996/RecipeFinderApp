@@ -1,11 +1,8 @@
 import { Router } from "express";
 import { searchForRecipes, getRecipe } from "../utils/spoonacularHandler.js";
-import {
-  PROTEIN_LIST,
-  COUSINE_LIST,
-} from "../../public/constants/searchParameters.js";
+import { DROPDOWNVALUES} from "../../public/constants/searchParameters.js";
+import {checkIfRecipeIsFavorit} from "../db/index.js"
 
-const dropDownValues = { proteins: PROTEIN_LIST, cousines: COUSINE_LIST };
 const router = Router();
 
 /* Default route. */
@@ -24,7 +21,7 @@ router.get("/", (req, res) => {
     searchResults: [],
   };
   res.render("index.ejs", {
-    dropDownValues: dropDownValues,
+    dropDownValues: DROPDOWNVALUES,
     selectedSearchParams: req.session.currentState.selectedSearchParams,
     user: req.session.passport ? req.session.passport.user : null,
   });
@@ -48,7 +45,7 @@ router.post("/recipe/search", async (req, res) => {
       displayError = "No recipes found.";
     }
     res.render("index.ejs", {
-      dropDownValues: dropDownValues,
+      dropDownValues: DROPDOWNVALUES,
       selectedSearchParams: req.session.currentState.selectedSearchParams,
       searchResults: req.session.currentState.searchResults,
       selectedRecipe: req.session.currentState.chosenRecipe,
@@ -63,21 +60,25 @@ router.post("/recipe/search", async (req, res) => {
 });
 
 /* Post-request. Called when the user wants to view a specific recipe based on it's id.*/
-router.post("/recipe/view/:id", async (req, res) => {
+router.get("/recipe/view/:id", async (req, res) => {
   try {
-    var recipe = await getRecipe(req.params.id);
+    console.log("Inside /recipe/view/:id " + req.params.id);
+    var recipeId = req.params.id;
+    var recipe = await getRecipe(recipeId);
     req.session.currentState.chosenRecipe = recipe.data;
     
-    console.log("");
-    console.log(req.session);
-    console.log("");
-
+    let isFavorit = null;
+    if(req.isAuthenticated()){
+      isFavorit = await checkIfRecipeIsFavorit(req.user.id, recipeId);
+    }
+    
     res.render("index.ejs", {
-      dropDownValues: dropDownValues,
+      dropDownValues: DROPDOWNVALUES,
       selectedSearchParams: req.session.currentState.selectedSearchParams,
       searchResults: req.session.currentState.searchResults,
       selectedRecipe: req.session.currentState.chosenRecipe,
-      user: req.session.passport ? req.session.passport.user : null,
+      user: req.isAuthenticated() ? req.session.passport.user : null,
+      isChosenRecipeFavorite: isFavorit,
     });
   } catch (error) {
     const stringifiedError = JSON.stringify(error.response.data);
@@ -85,5 +86,7 @@ router.post("/recipe/view/:id", async (req, res) => {
     res.render("index.ejs", { error: error.response.data.message, user: req.session.passport ? req.session.passport.user : null, });
   }
 });
+
+//router.get("/recipe/view", )
 
 export default router;

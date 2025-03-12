@@ -1,7 +1,7 @@
 import { Router } from "express";
 import recipeRouter from "./recipeRoutes.js";
 import authRouter from "./authRoutes.js";
-import usersRouter from "./users.js"
+import usersRouter from "./usersRoutes.js"
 
 /* 
     Gateway router that we use in app.

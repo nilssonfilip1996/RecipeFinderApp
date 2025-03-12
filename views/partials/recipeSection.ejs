@@ -9,7 +9,7 @@
             <% if(locals.user) { %>
               <div>
                 <form action="" method="get">
-                  <% if(locals.isChosenRecipeFavorite) {%>
+                  <% if(locals.isChosenRecipeFavorite && isChosenRecipeFavorite) {%>
                     <button type="submit" class="btn btn-danger" formaction="/users/removeRecipe" >Remove Recipe</button>
                   <% } else { %>
                     <button type="submit" class="btn btn-success" formaction="/users/addRecipe" >Save Recipe</button>
