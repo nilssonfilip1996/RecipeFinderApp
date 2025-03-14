@@ -4,17 +4,17 @@
 <div class="container my-auto">
   <!-- Start of Recipe section -->
   <% if(locals.selectedRecipe && Object.keys(selectedRecipe).length>0) { %>
-    <%- include('partials/recipeSection.ejs') %> 
+    <%- include('partials/frontPage/recipeSection.ejs') %> 
   <% } %>
   <!-- End of Recipe section -->
 
   <!-- Start of Search section -->
-  <%- include('partials/searchSection.ejs') %> 
+  <%- include('partials/frontPage/searchSection.ejs') %> 
   <!-- End of Search section -->
 
   <!-- Start of Search Results section. -->
   <% if(locals.searchResults && locals.searchResults.length>0) { %>
-    <%- include('partials/recipesGrid.ejs') %>
+    <%- include('partials/frontPage/recipesGrid.ejs') %>
   <% } %>
   <% if(locals.error) { %>
       <h2 class="text-center my-4"><%= error %> </h2>

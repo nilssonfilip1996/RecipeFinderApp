@@ -15,17 +15,18 @@
     <body class="d-flex flex-column vh-100">
 
         <!-- Header -->
-        <nav class="fixed.top bg-body-tertiary mb-4">
+<!--         <nav class="fixed.top bg-body-tertiary mb-4">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-xs-0 col-lg">
                     </div>
-                    <div class="col d-flex justify-content-center">
+                    <div class="col d-flex justify-content-center align-items-center">
                         <img class="me-2" src="/images/chef-svgrepo-com.svg" width="50px" alt="">
                         <a class="navbar-brand" href="/">Recipe Finder</a>
                     </div>
-                    <div class="col d-flex justify-content-end my-auto">
+                    <div class="col d-flex flex-column align-items-center align-items-lg-end flex-lg-row justify-content-end my-4">
                         <% if(locals.user) { %>                           
+                            <a type="submit" href="/users/savedRecipes" class="btn btn-primary">Saved Recipes</a>
                             <a type="submit" href="/auth/logOut" class="btn btn-danger">Log out</a>
                         <% } else { %>
                             <a type="submit" href="/auth/login" class="btn btn-success">Login</a>
@@ -33,5 +34,43 @@
                     </div>
                 </div>
             </div>
-        </nav>
+        </nav> -->
         <!-- End of header -->
+
+
+
+
+
+        <nav class="navbar bg-body-tertiary">
+            <div class="container-fluid">
+              <div class="d-flex align-items-center">
+                <img class="me-2" src="/images/chef-svgrepo-com.svg" width="50px" alt="">
+                <a class="navbar-brand" href="/">Recipe Finder</a>
+              </div>
+              <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                  <h5 class="offcanvas-title" id="offcanvasNavbarLabel"> <% if(locals.user) { %> Welcome <%= user.full_name %> <% } else { %> Please login <% } %> </h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                  <ul class="navbar-nav">
+                    <% if(locals.user) { %>
+<!--                         <li class="nav-item">
+                            <a class="active btn btn-primary d-block mb-2" href="/users/savedRecipes">My saved Recipes</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a class="btn btn-outline-danger d-block" href="/auth/logOut">Log out</a>
+                        </li>
+                    <% } else { %>
+                    <li class="nav-item">
+                      <a class="btn btn-outline-success d-block" type="submit" href="/auth/login">Log in</a>
+                    </li>
+                    <% } %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </nav>

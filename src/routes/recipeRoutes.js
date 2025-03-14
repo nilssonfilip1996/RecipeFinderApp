@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { searchForRecipes, getRecipe } from "../utils/spoonacularHandler.js";
+import * as spoonacularHandler from "../utils/spoonacularHandler.js"
 import { DROPDOWNVALUES} from "../../public/constants/searchParameters.js";
-import {checkIfRecipeIsFavorit} from "../db/index.js"
+import * as dbHandler from "../db/index.js";
 
 const router = Router();
 
@@ -30,7 +30,7 @@ router.get("/", (req, res) => {
 /* Post-request. Called when the user wants to find recipes based on cousine and protein */
 router.post("/recipe/search", async (req, res) => {
   try {
-    var recipeList = await searchForRecipes(
+    var recipeList = await spoonacularHandler.searchForRecipes(
       req.body.selectedCousine,
       req.body.selectedProtein,
       9
@@ -64,12 +64,12 @@ router.get("/recipe/view/:id", async (req, res) => {
   try {
     console.log("Inside /recipe/view/:id " + req.params.id);
     var recipeId = req.params.id;
-    var recipe = await getRecipe(recipeId);
+    var recipe = await spoonacularHandler.getRecipe(recipeId);
     req.session.currentState.chosenRecipe = recipe.data;
     
     let isFavorit = null;
     if(req.isAuthenticated()){
-      isFavorit = await checkIfRecipeIsFavorit(req.user.id, recipeId);
+      isFavorit = await dbHandler.checkIfRecipeIsFavorit(req.user.id, recipeId);
     }
     
     res.render("index.ejs", {

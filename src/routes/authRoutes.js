@@ -6,10 +6,16 @@ import bcrypt from "bcryptjs";
 const router = Router();
 
 router.get("/auth/register", (req, res) => {
+	if(req.isAuthenticated()){
+		return res.redirect("/");
+	}
     res.render("register.ejs", { user: req.session.passport ? req.session.passport.user : null, });
 });
 
 router.post("/auth/register", async (req, res) => {
+	if(req.isAuthenticated()){
+		return res.redirect("/");
+	}
 	const profileName = req.body["profileName"];
 	const username = req.body["username"];
 	const password = req.body["password"];
@@ -41,10 +47,13 @@ router.post("/auth/register", async (req, res) => {
 });
 
 router.get("/auth/login", (req, res) => {
+	if(req.isAuthenticated()){
+		return res.redirect("/");
+	}
     if(req.session.messages && req.session.messages.length>0){
         const loginErrorMsg = req.session.messages.pop();
         console.log(loginErrorMsg);
-        return res.render("login.ejs", {loginError: loginErrorMsg, user: req.session.passport ? req.session.passport.user : null,});
+        return res.render("login.ejs", {loginError: loginErrorMsg,});
     }
     res.render("login.ejs");
 });

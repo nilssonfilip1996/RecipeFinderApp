@@ -7,7 +7,7 @@
               <h2 class="my-4"><%= selectedRecipe.title %></h2>
             </div>
             <% if(locals.user) { %>
-              <div>
+              <div class="mb-4">
                 <form action="" method="get">
                   <% if(locals.isChosenRecipeFavorite && isChosenRecipeFavorite) {%>
                     <button type="submit" class="btn btn-danger" formaction="/users/removeRecipe" >Remove Recipe</button>

@@ -1,8 +1,11 @@
 <section <% if(locals.scrollToResults) {%> id="goTosearch" <%}%>>
     <h1 class="text-center">What are you craving?</h1>
+    <% if(!locals.user) { %>
+      <p class="text-center">Psst, <a href="/auth/login">login</a> to bookmark your favorite recipes!</p>
+    <% } %>
     <!-- Set of dropdowns for filtering recipes. -->
       <form method="POST" action="/recipe/search">
-        <div class="d-flex justify-content-center column-gap-1 column-gap-md-2 pe-0">
+        <div class="d-flex justify-content-center column-gap-1 column-gap-md-2 pe-0 align-items-center">
           <div class="">
             <select name="selectedCousine" class="form-select" required>
                 <option value="" disabled selected>Cousine:</option>
@@ -18,10 +21,16 @@
                     <option <%if(locals.selectedSearchParams.protein == protein){%> selected <%}%> ><%=protein%></option>
                 <% }); %>
             </select>
-          </div>
+          </div>    
           <div class="">
             <button type="submit" class="btn btn-primary">Submit</button>
           </div>
         </div>
+        <% if(locals.user) { %>
+          <div class="d-flex justify-content-center form-check form-switch mt-2">
+            <input class="form-check-input me-2" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+            <label class="form-check-label" for="flexSwitchCheckDefault">Show only bookmarked</label>
+          </div>
+        <% } %>  
     </form>
   </section>
