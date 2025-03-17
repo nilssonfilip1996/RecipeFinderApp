@@ -17,12 +17,14 @@ router.get("/", (req, res) => {
   /* Remember what the user enters so subsequent requests can auto-fill forms etc. */
   req.session.currentState = {
     selectedSearchParams: {cousine: "",protein: ""},
+    showingBookmarked: 'off',
     chosenRecipe: {},
     searchResults: [],
   };
   res.render("index.ejs", {
     dropDownValues: DROPDOWNVALUES,
     selectedSearchParams: req.session.currentState.selectedSearchParams,
+    showingBookmarked: req.session.showingBookmarked,
     user: req.session.passport ? req.session.passport.user : null,
   });
 });
@@ -30,16 +32,28 @@ router.get("/", (req, res) => {
 /* Post-request. Called when the user wants to find recipes based on cousine and protein */
 router.post("/recipe/search", async (req, res) => {
   try {
-    var recipeList = await spoonacularHandler.searchForRecipes(
+    if(req.body["showBookmarkedOnly"] === "on"){
+      const userId = req.session.passport.user.id
+      var recipeList = await dbHandler.getUsersRecipes(userId);
+      req.session.currentState.searchResults = recipeList;
+      req.session.currentState.showingBookmarked = 'on';
+    } else {
+      var recipeList = await spoonacularHandler.searchForRecipes(
       req.body.selectedCousine,
       req.body.selectedProtein,
       9
     );
+    req.session.currentState.searchResults = recipeList.data.results;
+    req.session.currentState.showingBookmarked = 'off';
+    }
 
+    
     req.session.currentState.selectedSearchParams.cousine = req.body.selectedCousine;
     req.session.currentState.selectedSearchParams.protein = req.body.selectedProtein;
-    req.session.currentState.searchResults = recipeList.data.results;
-
+    //console.log(req.session.currentState.searchResults);
+    
+    console.log(req.session.currentState);
+    
     var displayError = null;
     if (req.session.currentState.searchResults < 1) {
       displayError = "No recipes found.";
@@ -47,6 +61,7 @@ router.post("/recipe/search", async (req, res) => {
     res.render("index.ejs", {
       dropDownValues: DROPDOWNVALUES,
       selectedSearchParams: req.session.currentState.selectedSearchParams,
+      showingBookmarked: req.session.currentState.showingBookmarked,
       searchResults: req.session.currentState.searchResults,
       selectedRecipe: req.session.currentState.chosenRecipe,
       error: displayError,
@@ -75,6 +90,7 @@ router.get("/recipe/view/:id", async (req, res) => {
     res.render("index.ejs", {
       dropDownValues: DROPDOWNVALUES,
       selectedSearchParams: req.session.currentState.selectedSearchParams,
+      showingBookmarked: req.session.showingBookmarked,
       searchResults: req.session.currentState.searchResults,
       selectedRecipe: req.session.currentState.chosenRecipe,
       user: req.isAuthenticated() ? req.session.passport.user : null,

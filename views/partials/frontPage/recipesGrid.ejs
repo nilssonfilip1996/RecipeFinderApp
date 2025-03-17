@@ -8,7 +8,13 @@
               <div class="card-img-overlay d-flex flex-column justify-content-around align-items-start">
                 <h5 class="card-title"><%= result.title %> </h5>
                 <form method="get">
-                  <button type="submit" class="btn btn-success" formaction="/recipe/view/<%=result.id%>">See recipe</button>
+                  <% if(result.api_recipe_id) { %>
+                    <button type="submit" class="btn btn-success" formaction="/recipe/view/<%=result.api_recipe_id%>">See recipe</button>
+                    <% console.log("Showing saved recipes."); %>
+                  <% } else { %>
+                    <button type="submit" class="btn btn-success" formaction="/recipe/view/<%=result.id%>">See recipe</button>
+                    <% console.log("Showing searched recipes."); %>
+                  <% } %>
                 </form>
               </div>
             </div>

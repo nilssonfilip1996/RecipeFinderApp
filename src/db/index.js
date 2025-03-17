@@ -20,10 +20,12 @@ export async function getUsersRecipes(userId) {
   const foundRecipes = await pgDb.query(
     `SELECT *
     FROM favorite_recipes
-    WHERE user_id = $1
+    WHERE users_id = $1
     `,
     [userId]
   );
+  //console.log(foundRecipes.rows);
+  return foundRecipes.rows;
 }
 
 export async function checkIfRecipeIsFavorit(userId, api_recipe_id) {
@@ -51,7 +53,7 @@ export async function addRecipe(api_recipe_id, userId, recipeTitle, recipeImageU
   try {
     await pgDb.query(
       `
-      INSERT INTO favorite_recipes (api_recipe_id, users_id, title, image_url)
+      INSERT INTO favorite_recipes (api_recipe_id, users_id, title, image)
       VALUES ($1, $2, $3, $4)
       `,
       [api_recipe_id, userId, recipeTitle, recipeImageUrl]

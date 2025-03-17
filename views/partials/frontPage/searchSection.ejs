@@ -7,7 +7,7 @@
       <form method="POST" action="/recipe/search">
         <div class="d-flex justify-content-center column-gap-1 column-gap-md-2 pe-0 align-items-center">
           <div class="">
-            <select name="selectedCousine" class="form-select" required>
+            <select name="selectedCousine" id="selectedCousineDropdown" class="form-select" required>
                 <option value="" disabled selected>Cousine:</option>
                 <% dropDownValues.cousines.forEach(cousine => {%>
                     <option <%if(locals.selectedSearchParams.cousine == cousine){%> selected <%}%> ><%=cousine%></option>
@@ -15,7 +15,7 @@
             </select>
           </div>
           <div class="">
-            <select name="selectedProtein" class="form-select" required>
+            <select name="selectedProtein" id="selectedProteinDropdown" class="form-select" required>
                 <option value="" disabled selected>Protein:</option>
                 <% dropDownValues.proteins.forEach(protein => {%>
                     <option <%if(locals.selectedSearchParams.protein == protein){%> selected <%}%> ><%=protein%></option>
@@ -28,9 +28,34 @@
         </div>
         <% if(locals.user) { %>
           <div class="d-flex justify-content-center form-check form-switch mt-2">
-            <input class="form-check-input me-2" type="checkbox" role="switch" id="flexSwitchCheckDefault">
-            <label class="form-check-label" for="flexSwitchCheckDefault">Show only bookmarked</label>
+            <input class="form-check-input me-2" type="checkbox" role="switch" name="showBookmarkedOnly" id="showBookmarkedOnlyToggle" <% if(locals.showingBookmarked && showingBookmarked === 'on') { %> checked <% } %> >
+            <label class="form-check-label me-2" for="showBookmarkedOnlyToggle">Show only bookmarked</label>
+            <img class="" src="/images/question-circle-svgrepo-com.svg" width="20px" alt="" data-bs-toggle="tooltip" data-bs-html="true" title="<p>Submitting while this is toggled will return all of your bookmarked recipes and not filter based on what you have chosen in the dropdown menues.</p> <p>You will be able to filter your bookmarked recipes in a later version of this application.</p>">
           </div>
         <% } %>  
     </form>
   </section>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let cousineDropDown = document.getElementById("selectedCousineDropdown");
+      let proteinDropDown = document.getElementById("selectedProteinDropdown");
+      let bookmarkedOnlyToggle = document.getElementById("showBookmarkedOnlyToggle");
+      if(bookmarkedOnlyToggle){
+        if(bookmarkedOnlyToggle.checked){
+          cousineDropDown.disabled = true;
+          proteinDropDown.disabled = true;
+        }
+        bookmarkedOnlyToggle.addEventListener('change', () => {
+            if (bookmarkedOnlyToggle.checked) {
+              cousineDropDown.disabled = true;
+              proteinDropDown.disabled = true;
+          } else {
+              cousineDropDown.disabled = false;
+              proteinDropDown.disabled = false;
+          }
+        });
+      }
+    });
+
+  </script>
