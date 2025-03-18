@@ -1,6 +1,7 @@
 import pg from "pg";
+const { Pool } = pg;
 
-function initPostgresDb() {
+/* function initPostgresDb() {
   const db = new pg.Client({
     user: process.env.PG_USER,
     host: process.env.PG_HOST,
@@ -14,7 +15,20 @@ function initPostgresDb() {
   return db;
 }
 
-const pgDb = initPostgresDb();
+const pgDb = initPostgresDb(); */
+
+function initRemotePostgresDb() {
+  const pool = new Pool({
+    connectionString: process.env.DB_CONFIG_LINK,
+    ssl: {
+        rejectUnauthorized: false
+    }
+  });
+  console.log("DB connection established.");
+  return pool;
+}
+
+const pgDb = initRemotePostgresDb();
 
 export async function getUsersRecipes(userId) {
   const foundRecipes = await pgDb.query(
