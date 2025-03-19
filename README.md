@@ -23,11 +23,40 @@ This key will be used for authorization.
 Make sure that you have Node.js installed on your computer:
 https://nodejs.org/en
 
+### Postgresql
+Make sure that you have Postgresql installed on your local machine:
+https://www.postgresql.org/download/
+
 <!-- start:code block -->
 ## Clone this repository
 ```bash
 git clone https://github.com/nilssonfilip1996/RecipeFinderApp
 cd RecipeFinderApp
+```
+
+## Postgresql setup
+Open pgAdmin that you installed earlier.
+Create a new database that you will use to save users and recipes.
+Documentation: https://www.postgresql.org/docs/
+
+### Database tables:
+Create the following two tables within your database by copying and pasting them into pgAdmins query tool:
+```bash
+CREATE TABLE users (
+	id SERIAL UNIQUE,
+	full_name VARCHAR(100),
+	username VARCHAR(50),
+	hashed_password VARCHAR(100)
+);
+
+CREATE TABLE favorite_recipes (
+	id SERIAL,
+	api_recipe_id INTEGER,
+	users_id INTEGER REFERENCES users(id),
+	title VARCHAR(100),
+	image VARCHAR(100),
+	UNIQUE(api_recipe_id, users_id)
+);
 ```
 
 ## Install dependencies
@@ -41,14 +70,22 @@ Create a file named ".env" in the root directory.
 
 Open the file and paste the following:
 ```bash
-API_KEY="your_unique_apiKey"
+# Spoonacular API key.
+API_KEY="your_unique_apiKey"    # Needs to be changed.
+
+# Information for connecting to a local Postgres database.
+PG_USER="username"              # Needs to be changed.
+PG_HOST="hostname"              # Needs to be changed.
+PG_DATABASE="databaseName"      # Needs to be changed.
+PG_PASSWORD="password"          # Needs to be changed.
+PG_PORT="5433"                  # Needs to be changed.
+
+# Session and authentication. 
+BCRYPT_SALTROUNDS=12            # Can be changed.
+SESSION_SECRET = "SUPERSECRET"  # Can be changed.
 ```
 Replace "your_unique_apiKey" with the one you created earlier.
-
-Example:
-```bash
-API_KEY=2546fgr978vop150x75hs0b7f7m2hfwr
-```
+Replace the Postgres database information.
 
 # Run the app
 ```bash

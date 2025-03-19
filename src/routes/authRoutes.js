@@ -5,6 +5,7 @@ import bcrypt from "bcryptjs";
 
 const router = Router();
 
+
 router.get("/auth/register", (req, res) => {
 	if(req.isAuthenticated()){
 		return res.redirect("/");
@@ -22,10 +23,7 @@ router.post("/auth/register", async (req, res) => {
 	
 	try {
 		const foundUser = await db.query("SELECT * FROM users WHERE username=$1", [username,]);
-		//console.log("foundUser: ");
-		//console.log(foundUser.rows[0]);
 		if(foundUser.rows.length>0){
-			//return res.redirect("/auth/login");
 			return res.render("register.ejs", {registerError: "User already exists!", user: req.session.passport ? req.session.passport.user : null,})
 		}			
 		bcrypt.hash(password, +process.env.BCRYPT_SALTROUNDS, async (err, hash) => {

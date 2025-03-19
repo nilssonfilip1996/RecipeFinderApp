@@ -13,12 +13,15 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((user, done) => {
 	console.log("Inside DeSerializeUser");
-	//console.log(user);
-	
 	done(null, user);
 });
 
 
+/**
+ * Local strategy for authentication when a user tries to login.
+ * If the authentication was successful, a callback function is returned with user information stored in the database.
+ * If If the authentication was not successful, a callback function is returned with no user information and an error message.
+ */
 export default passport.use(
 	new Strategy(async (username, password, done) => {
 		try {

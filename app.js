@@ -1,4 +1,4 @@
-import "dotenv/config"
+import "dotenv/config";
 import express from "express";
 import bodyParser from "body-parser";
 import session from "express-session";
@@ -9,7 +9,6 @@ import "./src/strategies/local-strategy.js";
 const port = 3000;
 
 function initApp() {
-  
   const app = express();
 
   app.use(express.static("public"));
@@ -30,6 +29,7 @@ function initApp() {
   app.use(passport.initialize());
   app.use(passport.session());
 
+  //Tell Express what routes to use(GET, POST etc).
   app.use(indexRouter);
 
   return app;

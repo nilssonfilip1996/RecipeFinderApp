@@ -25,18 +25,4 @@ router.get("/users/removeRecipe", (req, res) => {
     res.redirect(`/recipe/view/${recipeId}`);
 });
 
-/* router.get("/users/viewAllRecipes", (req, res) => {
-    //TODO when user clicks on "My saved recipes" in the navbar menu.
-    if(!req.isAuthenticated()){
-        return res.redirect("/");
-    }
-    const userId = req.user.id;
-    const recipes = dbHandler.getUsersRecipes(userId);
-    res.render("/")
-}); */
-
-router.get("/users/viewRecipe", (req, res) => {
-    //TODO when user clicks on one of it's bookmarked recipes.
-});
-
 export default router;
