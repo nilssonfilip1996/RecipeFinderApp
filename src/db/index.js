@@ -3,23 +3,18 @@ const { Pool } = pg;
 
 /* Start of initializing a local database.*/
 
-/* function initPostgresDb() {
-  const db = new pg.Client({
-    user: process.env.PG_USER,
-    host: process.env.PG_HOST,
-    database: process.env.PG_DATABASE,
-    password: process.env.PG_PASSWORD,
-    port: process.env.PG_PORT,
+/* function initLocalPostgresDb() {
+  const pool = new Pool({
+    connectionString: process.env.PG_LOCAL_CONFIG_STRING,
   });
-  db.connect();
   console.log("DB connection established.");
-
-  return db;
+  return pool;
 }
 
-const pgDb = initPostgresDb(); */
+const pgDb = initLocalPostgresDb(); */
 
 /* End of initializing a local database.*/
+
 
 /* Start of initializing a remote database. */
 
