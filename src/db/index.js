@@ -20,7 +20,7 @@ const pgDb = initLocalPostgresDb(); */
 
 function initRemotePostgresDb() {
   const pool = new Pool({
-    connectionString: process.env.DB_CONFIG_LINK,
+    connectionString: process.env.PG_REMOTE_CONFIG_STRING,
     ssl: {
         rejectUnauthorized: false
     }
