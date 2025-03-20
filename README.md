@@ -40,7 +40,7 @@ Create a new database that you will use to save users and recipes.
 Documentation: https://www.postgresql.org/docs/
 
 ### Database tables:
-Create the following two tables within your database by copying and pasting them into pgAdmins query tool:
+Create the following three tables within your database by copying and pasting the following text into pgAdmins query tool:
 ```bash
 CREATE TABLE users (
 	id SERIAL UNIQUE,
@@ -57,6 +57,17 @@ CREATE TABLE favorite_recipes (
 	image VARCHAR(100),
 	UNIQUE(api_recipe_id, users_id)
 );
+
+CREATE TABLE session (
+  sid varchar NOT NULL COLLATE "default",
+  sess json NOT NULL,
+  expire timestamp(6) NOT NULL
+)
+WITH (OIDS=FALSE);
+
+ALTER TABLE session ADD CONSTRAINT session_pkey PRIMARY KEY ("sid") NOT DEFERRABLE INITIALLY IMMEDIATE;
+
+CREATE INDEX IDX_session_expire ON session ("expire");
 ```
 
 ## Install dependencies
@@ -71,21 +82,24 @@ Create a file named ".env" in the root directory.
 Open the file and paste the following:
 ```bash
 # Spoonacular API key.
-API_KEY="your_unique_apiKey"    # Needs to be changed.
-
-# Information for connecting to a local Postgres database.
-PG_USER="username"              # Needs to be changed.
-PG_HOST="hostname"              # Needs to be changed.
-PG_DATABASE="databaseName"      # Needs to be changed.
-PG_PASSWORD="password"          # Needs to be changed.
-PG_PORT="5433"                  # Needs to be changed.
+API_KEY="your_unique_apiKey"
 
 # Session and authentication. 
-BCRYPT_SALTROUNDS=12            # Can be changed.
+BCRYPT_SALTROUNDS = 12          # Can be changed.
 SESSION_SECRET = "SUPERSECRET"  # Can be changed.
+
+#### Database setup. 
+
+### START OF DATABASE CONFIG ####
+
+## Information for connecting to a local Postgres database.
+## Replace the fields <> with the correct information for your database.
+PG_CONFIG_STRING="postgres://<user>:<password>@<address>:<port>/<database-name>"
+
+#### END OF DATABASE CONFIG ####
 ```
 Replace "your_unique_apiKey" with the one you created earlier.
-Replace the Postgres database information.
+Replace the fields <> with the correct information for your database.
 
 # Run the app
 ```bash

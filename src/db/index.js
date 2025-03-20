@@ -18,18 +18,15 @@ const pgDb = initLocalPostgresDb(); */
 
 /* Start of initializing a remote database. */
 
-function initRemotePostgresDb() {
+function initPostgresDb() {
   const pool = new Pool({
-    connectionString: process.env.PG_REMOTE_CONFIG_STRING,
-    ssl: {
-        rejectUnauthorized: false
-    }
+    connectionString: process.env.PG_CONFIG_STRING,
   });
   console.log("DB connection established.");
   return pool;
 }
 
-const pgDb = initRemotePostgresDb();
+const pgDb = initPostgresDb();
 
 /* End of initializing a remote database. */
 

@@ -9,7 +9,7 @@ import "./src/strategies/local-strategy.js";
 import genFunc from 'connect-pg-simple';
 const PostgresqlStore = genFunc(session);
 const sessionStore = new PostgresqlStore({
-  conString: process.env.PG_REMOTE_CONFIG_STRING,
+  conString: process.env.PG_CONFIG_STRING,
 });
 
 const port = 3000;
