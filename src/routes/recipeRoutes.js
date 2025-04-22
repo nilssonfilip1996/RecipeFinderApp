@@ -25,7 +25,7 @@ router.get("/", (req, res) => {
 /* Post-request. Called when the user wants to find recipes based on cousine and protein */
 router.post("/recipe/search", async (req, res) => {
   try {
-    if (req.body["showBookmarkedOnly"] === "on") {
+    if (req.isAuthenticated() && req.body["showBookmarkedOnly"] === "on") {
       const userId = req.session.passport.user.id;
       var recipeList = await dbHandler.getUsersRecipes(userId);
       req.session.currentState.searchResults = recipeList;
