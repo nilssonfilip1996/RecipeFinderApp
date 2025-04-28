@@ -23,8 +23,21 @@ This key will be used for authorization.
 Make sure that you have Node.js installed on your computer:
 https://nodejs.org/en
 
-### Postgresql
-Make sure that you have Postgresql installed on your local machine:
+**The following NPM packages are used within the project:**
+* **Axios**, For requesting and retrieving data from the Spoonacular API.
+* **bcrypt**, For encrypting user passwords.
+* **body-parser**, For parsing data that might be sent by a client.
+* **connect-pg-simple**, For saving user sessions to a postgres database.
+* **dotenv**, For loading envioronment variables from a .env file.
+* **ejs**, For embedding dynamic JS into markup code.
+* **express**, For creating a server-side application. Handles HTTP routing and requests from client.
+* **express-session**, Manages client sessions and session-id's.
+* **passport**, Used to authenticate requests from clients.
+* **passport-local**, For configuring a local strategy used by passport.
+* **pg**, Used as a interface between the web application and the PostgreSQL server.
+
+### PostgreSQL
+Make sure that you have PostgreSQL installed on your local machine:
 https://www.postgresql.org/download/
 
 <!-- start:code block -->
@@ -34,7 +47,7 @@ git clone https://github.com/nilssonfilip1996/RecipeFinderApp
 cd RecipeFinderApp
 ```
 
-## Postgresql setup
+## PostgreSQL setup
 Open pgAdmin that you installed earlier.
 Create a new database that you will use to save users and recipes.
 Documentation: https://www.postgresql.org/docs/
